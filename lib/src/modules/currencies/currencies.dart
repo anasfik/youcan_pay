@@ -1,6 +1,6 @@
 import '../../base/youcan_pay_module.dart';
 
-final class YouCanPayCurrencies extends YouCanPayModule {
+final class YouCanPayCurrencies implements YouCanPayModule {
   static final YouCanPayCurrencies _instance = YouCanPayCurrencies._();
   static YouCanPayCurrencies get instance => _instance;
   YouCanPayCurrencies._();

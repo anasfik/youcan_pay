@@ -1,3 +1,3 @@
-abstract base class YouCanPayModule {
+abstract interface class YouCanPayModule {
   Type get type;
 }
