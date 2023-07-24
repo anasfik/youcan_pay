@@ -16,7 +16,7 @@ abstract interface class YouCanPayPaymentsBase {
     required String pubKey,
     required String tokenId,
   });
-gi
+
   Future<PayResponse> pay({
     required String pubKey,
     required String tokenId,
