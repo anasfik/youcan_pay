@@ -18,34 +18,27 @@ import 'base/youcan_pay_base.dart';
 
 final class YouCanPay implements YouCanPayBase {
   @override
-  // TODO: implement account
-  YouCanPayAccounts get account => throw UnimplementedError();
+  YouCanPayAccounts get account => YouCanPayAccounts.instance;
 
   @override
-  // TODO: implement balanceHistory
-  YouCanPayBalanceHistory get balanceHistory => throw UnimplementedError();
+  YouCanPayBalanceHistory get balanceHistory =>
+      YouCanPayBalanceHistory.instance;
 
   @override
-  // TODO: implement currencies
-  YouCanPayCurrencies get currencies => throw UnimplementedError();
+  YouCanPayCurrencies get currencies => YouCanPayCurrencies.instance;
 
   @override
-  // TODO: implement deposits
-  YouCanPayDeposits get deposits => throw UnimplementedError();
+  YouCanPayDeposits get deposits => YouCanPayDeposits.instance;
 
   @override
-  // TODO: implement invoices
-  YouCanPayInvoices get invoices => throw UnimplementedError();
+  YouCanPayInvoices get invoices => YouCanPayInvoices.instance;
 
   @override
-  // TODO: implement payments
-  YouCanPayPayments get payments => throw UnimplementedError();
+  YouCanPayPayments get payments => YouCanPayPayments.instance;
 
   @override
-  // TODO: implement transfers
-  YouCanPayTransfers get transfers => throw UnimplementedError();
+  YouCanPayTransfers get transfers => YouCanPayTransfers.instance;
 
   @override
-  // TODO: implement withdrawals
-  YouCanPayWithdrawals get withdrawals => throw UnimplementedError();
+  YouCanPayWithdrawals get withdrawals => YouCanPayWithdrawals.instance;
 }
