@@ -11,6 +11,9 @@ abstract interface class YouCanPayBase {
   String get baseUrl;
   set baseUrl(String baseUrl);
 
+  bool get isSandbox;
+  set isSandbox(bool isSandbox);
+
   YouCanPayPayments get payments;
   YouCanPayAccounts get account;
   YouCanPayCurrencies get currencies;

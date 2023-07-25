@@ -56,4 +56,12 @@ final class YouCanPay implements YouCanPayBase {
   set baseUrl(String baseUrl) {
     _baseUrl = baseUrl;
   }
+
+  @override
+  bool get isSandbox => YouCanPayConstants.isSandbox;
+
+  @override
+  set isSandbox(bool isSandbox) {
+    YouCanPayConstants.isSandbox = isSandbox;
+  }
 }

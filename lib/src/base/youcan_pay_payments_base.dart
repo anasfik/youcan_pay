@@ -1,4 +1,5 @@
 import '../models/payments/cash_plus.dart';
+import '../models/payments/expiry_date.dart';
 import '../models/payments/pay.dart';
 import '../models/payments/tokize_response.dart';
 
@@ -20,10 +21,10 @@ abstract interface class YouCanPayPaymentsBase {
   Future<PayResponse> pay({
     required String pubKey,
     required String tokenId,
-    required String creditCard,
+    required int creditCard,
     required String cardHolderName,
-    required String cvv,
-    required DateTime expiryDate,
+    required int cvv,
+    required YouCanPayExpireDate expireDate,
   });
 
   Future<PayResponse> authorize({

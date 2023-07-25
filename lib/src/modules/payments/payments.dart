@@ -7,6 +7,7 @@ import 'package:youcan_pay/src/utils/enums.dart';
 
 import '../../base/youcan_pay_module.dart';
 import '../../base/youcan_pay_payments_base.dart';
+import '../../models/payments/expiry_date.dart';
 import '../../networking/endpoint.dart';
 
 final class YouCanPayPayments
@@ -86,12 +87,27 @@ final class YouCanPayPayments
   Future<PayResponse> pay({
     required String pubKey,
     required String tokenId,
-    required String creditCard,
+    required int creditCard,
     required String cardHolderName,
-    required String cvv,
-    required DateTime expiryDate,
+    required int cvv,
+    required YouCanPayExpireDate expireDate,
   }) {
-    // TODO: implement pay
-    throw UnimplementedError();
+    return YouCanPayNetworkingClient.sendFormRequestFromJson<PayResponse>(
+      endpoint: YouCanPayEndpointBuilder()([
+        YouCanPayConstants.endpoints.pay,
+      ]),
+      body: {
+        "pub_key": pubKey,
+        "token_id": tokenId,
+        "credit_card": creditCard,
+        "card_holder_name": cardHolderName,
+        "cvv": cvv,
+        "expire_date": expireDate.toString(),
+      },
+      method: YouCanPayNetworkingClientMethod.post,
+      onSuccess: (map) {
+        return PayResponse.fromMap(map);
+      },
+    );
   }
 }
