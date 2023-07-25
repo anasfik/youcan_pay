@@ -1,7 +1,7 @@
 class HeadersBuilder {
-  final _headers = <String, dynamic>{};
+  final _headers = <String, String>{};
 
-  Map<String, dynamic> get headers => _headers;
+  Map<String, String> get headers => _headers;
 
   static final _instance = HeadersBuilder._();
 
@@ -29,5 +29,10 @@ class HeadersBuilder {
       value: 'application/json',
       overwrite: true,
     );
+  }
+
+  HeadersBuilder addTokenHeader() {
+    // Next...
+    return this;
   }
 }
