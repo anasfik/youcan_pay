@@ -13,10 +13,12 @@ import 'package:youcan_pay/src/modules/payments/payments.dart';
 import 'package:youcan_pay/src/modules/transfers/transfers.dart';
 
 import 'package:youcan_pay/src/modules/withdrawals/withdrawals.dart';
+import 'package:youcan_pay/src/utils/consts.dart';
 
 import 'base/youcan_pay_base.dart';
 
 final class YouCanPay implements YouCanPayBase {
+  String? _baseUrl;
   @override
   YouCanPayAccounts get account => YouCanPayAccounts.instance;
 
@@ -41,4 +43,12 @@ final class YouCanPay implements YouCanPayBase {
 
   @override
   YouCanPayWithdrawals get withdrawals => YouCanPayWithdrawals.instance;
+
+  @override
+  String get baseUrl => _baseUrl ?? YouCanPayConstants.baseUrl;
+
+  @override
+  set baseUrl(String baseUrl) {
+    _baseUrl = baseUrl;
+  }
 }

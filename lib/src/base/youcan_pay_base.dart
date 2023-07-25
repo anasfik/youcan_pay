@@ -8,6 +8,9 @@ import '../modules/transfers/transfers.dart';
 import '../modules/withdrawals/withdrawals.dart';
 
 abstract interface class YouCanPayBase {
+  String get baseUrl;
+  set baseUrl(String baseUrl);
+
   YouCanPayPayments get payments;
   YouCanPayAccounts get account;
   YouCanPayCurrencies get currencies;
