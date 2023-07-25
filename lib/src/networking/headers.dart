@@ -46,6 +46,7 @@ class HeadersBuilder {
     return addHeader(
       key: "Authorization",
       value: "Bearer $tokenToUse",
+      overwrite: true,
     );
   }
 }

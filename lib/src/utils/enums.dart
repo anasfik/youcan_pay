@@ -35,4 +35,5 @@ enum YouCanPayInvoicesSortField {
 enum YouCanPayNetworkingClientMethod {
   get,
   post,
+  put,
 }

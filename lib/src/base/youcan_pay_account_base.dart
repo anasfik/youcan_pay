@@ -22,9 +22,9 @@ abstract interface class YouCanPayAccountBase {
 
   Future<RegisterResponse> updateAccount({
     required String token,
-    required String firstName,
-    required String lastName,
-    required String adress,
+    String? firstName,
+    String? lastName,
+    String? adress,
   });
 
   Future<RegisterResponse> updatePassword({

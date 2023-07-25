@@ -117,12 +117,26 @@ final class YouCanPayAccounts implements YouCanPayModule, YouCanPayAccountBase {
   @override
   Future<RegisterResponse> updateAccount({
     required String token,
-    required String firstName,
-    required String lastName,
-    required String adress,
+    String? firstName,
+    String? lastName,
+    String? adress,
   }) {
-    // TODO: implement updateAccount
-    throw UnimplementedError();
+    return YouCanPayNetworkingClient.sendJsonRequestFromJson<RegisterResponse>(
+      endpoint: YouCanPayEndpointBuilder()([
+        YouCanPayConstants.endpoints.me,
+      ]),
+      body: {
+        if (firstName != null) 'first_name': firstName,
+        if (lastName != null) 'last_name': lastName,
+        if ((adress != null)) 'address': adress,
+      },
+      method: YouCanPayNetworkingClientMethod.put,
+      customHeaders:
+          HeadersBuilder().addAcceptJsonHeader().addTokenHeader(token).headers,
+      onSuccess: (map) {
+        return RegisterResponse.fromMap(map);
+      },
+    );
   }
 
   @override

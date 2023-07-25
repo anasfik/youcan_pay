@@ -49,4 +49,16 @@ void main() async {
     print(e.message);
     print(e.statusCode);
   }
+
+  try {
+    final res = await YouCanPay.instance.account.updateAccount(
+      token: token,
+      firstName: "anas fikhi",
+    );
+
+    print(res.message);
+  } on YouCanPayException catch (e) {
+    print(e.message);
+    print(e.statusCode);
+  }
 }

@@ -46,4 +46,113 @@ abstract class YouCanPayNetworkingClient {
       )(message);
     }
   }
+
+  static Future<T> sendJsonRequestFromJson<T extends YouCanPayDataModel>({
+    required String endpoint,
+    required Map<String, dynamic> body,
+    required YouCanPayNetworkingClientMethod method,
+    Map<String, String>? customHeaders,
+    required T Function(Map<String, dynamic> decodedResponse) onSuccess,
+  }) async {
+    switch (method) {
+      case YouCanPayNetworkingClientMethod.get:
+        return _getRequestFromJson(
+          body: body,
+          endpoint: endpoint,
+          onSuccess: onSuccess,
+          customHeaders: customHeaders,
+        );
+
+      case YouCanPayNetworkingClientMethod.post:
+        return _postRequestFromJson(
+          body: body,
+          endpoint: endpoint,
+          onSuccess: onSuccess,
+          customHeaders: customHeaders,
+        );
+      case YouCanPayNetworkingClientMethod.put:
+        return _putRequestFromJson(
+          body: body,
+          endpoint: endpoint,
+          onSuccess: onSuccess,
+          customHeaders: customHeaders,
+        );
+      default:
+        throw Exception();
+    }
+  }
+
+  static Future<T> _getRequestFromJson<T extends YouCanPayDataModel>({
+    required String endpoint,
+    required Map<String, dynamic> body,
+    Map<String, String>? customHeaders,
+    required T Function(Map<String, dynamic> decodedResponse) onSuccess,
+  }) async {
+    final res = await http.get(
+      Uri.parse(endpoint),
+      headers: customHeaders ?? HeadersBuilder().addAcceptJsonHeader().headers,
+    );
+
+    final decodedResponse = jsonDecode(res.body);
+
+    if (res.statusCode.isOk) {
+      return onSuccess(decodedResponse);
+    } else {
+      final message = decodedResponse["message"] ?? decodedResponse.toString();
+
+      throw YouCanPayExceptionDecidedByStatusCode(
+        statusCode: res.statusCode,
+      )(message);
+    }
+  }
+
+  static Future<T> _postRequestFromJson<T extends YouCanPayDataModel>({
+    required String endpoint,
+    required Map<String, dynamic> body,
+    Map<String, String>? customHeaders,
+    required T Function(Map<String, dynamic> decodedResponse) onSuccess,
+  }) async {
+    final res = await http.post(
+      Uri.parse(endpoint),
+      headers: customHeaders ?? HeadersBuilder().addAcceptJsonHeader().headers,
+      body: body,
+    );
+
+    final decodedResponse = jsonDecode(res.body);
+
+    if (res.statusCode.isOk) {
+      return onSuccess(decodedResponse);
+    } else {
+      final message = decodedResponse["message"] ?? decodedResponse.toString();
+
+      throw YouCanPayExceptionDecidedByStatusCode(
+        statusCode: res.statusCode,
+      )(message);
+    }
+  }
+
+  static Future<T> _putRequestFromJson<T extends YouCanPayDataModel>({
+    required String endpoint,
+    required Map<String, dynamic> body,
+    Map<String, String>? customHeaders,
+    required T Function(Map<String, dynamic> decodedResponse) onSuccess,
+  }) async {
+    final res = await http.put(
+      Uri.parse(endpoint),
+      headers: customHeaders ?? HeadersBuilder().addAcceptJsonHeader().headers,
+      body: body,
+    );
+
+    final decodedResponse = jsonDecode(res.body);
+
+    if (res.statusCode.isOk) {
+      return onSuccess(decodedResponse);
+    } else {
+      final message = decodedResponse["message"] ?? decodedResponse.toString();
+
+      throw YouCanPayExceptionDecidedByStatusCode(
+        statusCode: res.statusCode,
+      )(message);
+    }
+  }
 }
