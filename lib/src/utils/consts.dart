@@ -19,4 +19,5 @@ class YouCanPayEndpointConstants {
   final login = "login";
   final me = "me";
   final password = "password";
+  final stats = "stats";
 }

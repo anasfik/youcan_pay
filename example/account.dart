@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:youcan_pay/src/exceptions/exception.dart';
+import 'package:youcan_pay/src/utils/enums.dart';
 import 'package:youcan_pay/src/youcan_pay.dart';
 
 void main() async {
@@ -70,6 +71,21 @@ void main() async {
     );
 
     print(res.message);
+  } on YouCanPayException catch (e) {
+    print(e.message);
+    print(e.statusCode);
+  }
+
+  try {
+    final res = await YouCanPay.instance.account.stats(
+      token: token,
+      fromDate: DateTime.now().subtract(Duration(days: 5)),
+      toDate: DateTime.now(),
+      interval: YouCanPayStatsInterval.thisWeek,
+    );
+
+    print(res.fromDate);
+    print(res.paidTransactionsByDates.map((e) => "${e.date} ${e.totalAmount}"));
   } on YouCanPayException catch (e) {
     print(e.message);
     print(e.statusCode);

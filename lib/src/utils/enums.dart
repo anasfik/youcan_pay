@@ -37,3 +37,9 @@ enum YouCanPayNetworkingClientMethod {
   post,
   put,
 }
+
+enum YouCanPayStatsInterval {
+  today,
+  yesterday,
+  thisWeek,
+}

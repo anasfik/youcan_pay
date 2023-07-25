@@ -1,6 +1,7 @@
 import '../models/account/login.dart';
 import '../models/account/register.dart';
 import '../models/account/user_informations.dart';
+import '../utils/enums.dart';
 
 abstract interface class YouCanPayAccountBase {
   Future<RegisterResponse> register({
@@ -37,7 +38,7 @@ abstract interface class YouCanPayAccountBase {
     required String token,
     required DateTime fromDate,
     required DateTime toDate,
-    required String interval,
+    required YouCanPayStatsInterval interval,
   });
 
   Future<LoginResponse> refreshToken({

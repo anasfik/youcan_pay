@@ -5,6 +5,7 @@ import 'package:youcan_pay/src/networking/headers.dart';
 
 import '../../base/youcan_pay_account_base.dart';
 import '../../base/youcan_pay_module.dart';
+import '../../models/account/stats.dart';
 import '../../models/account/user_informations.dart';
 import '../../networking/client.dart';
 import '../../networking/endpoint.dart';
@@ -104,14 +105,27 @@ final class YouCanPayAccounts implements YouCanPayModule, YouCanPayAccountBase {
   }
 
   @override
-  Future stats({
+  Future<StatsResponse> stats({
     required String token,
     required DateTime fromDate,
     required DateTime toDate,
-    required String interval,
+    required YouCanPayStatsInterval interval,
   }) {
-    // TODO: implement stats
-    throw UnimplementedError();
+    return YouCanPayNetworkingClient.sendJsonRequestFromJson<StatsResponse>(
+      endpoint: YouCanPayEndpointBuilder()([
+        YouCanPayConstants.endpoints.stats,
+        '?from_date=${fromDate.toIso8601String()}',
+        '&to_date=${toDate.toIso8601String()}',
+        '&interval=${interval.name}',
+      ]),
+      body: {},
+      method: YouCanPayNetworkingClientMethod.get,
+      customHeaders:
+          HeadersBuilder().addAcceptJsonHeader().addTokenHeader(token).headers,
+      onSuccess: (map) {
+        return StatsResponse.fromMap(map);
+      },
+    );
   }
 
   @override
