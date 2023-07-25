@@ -22,3 +22,12 @@ enum YouCanPayWithdrawalSortField {
   paid_at,
   created_at,
 }
+
+enum YouCanPayInvoicesSortField {
+  amount,
+  name,
+  active,
+  status,
+  due_by,
+  created_at,
+}

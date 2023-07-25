@@ -10,6 +10,7 @@ abstract interface class YouCanPayTransfersBase {
   });
 
   Future transfers({
+    required String token,
     required YouCanPayTransfersSortField sortField,
     required YouCanPaySortOrder sortOrder,
     required int limit,
