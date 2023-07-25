@@ -1,6 +1,6 @@
 import '../utils/enums.dart';
 
-abstract interface class YouCanPayInvoices {
+abstract interface class YouCanPayInvoicesBase {
   /// TODO; figure out how exactly those APIs are working from the docs.
 
   Future create({
