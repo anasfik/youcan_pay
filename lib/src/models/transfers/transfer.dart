@@ -1,7 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:youcan_pay/src/models/transfers/transceiver.dart';
 
-class YouCanPayTransfer extends Equatable {
+import '../model.dart';
+
+class YouCanPayTransfer extends YouCanPayDataModel {
   final String id;
   final String displayAmount;
   final String message;

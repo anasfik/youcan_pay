@@ -31,3 +31,8 @@ enum YouCanPayInvoicesSortField {
   due_by,
   created_at,
 }
+
+enum YouCanPayNetworkingClientMethod {
+  get,
+  post,
+}

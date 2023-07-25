@@ -1,12 +1,19 @@
 import 'package:youcan_pay/src/models/payments/cash_plus.dart';
 import 'package:youcan_pay/src/models/payments/pay.dart';
 import 'package:youcan_pay/src/models/payments/tokize_response.dart';
+import 'package:youcan_pay/src/networking/client.dart';
+import 'package:youcan_pay/src/utils/consts.dart';
+import 'package:youcan_pay/src/utils/enums.dart';
 
 import '../../base/youcan_pay_module.dart';
 import '../../base/youcan_pay_payments_base.dart';
+import '../../networking/endpoint.dart';
 
 final class YouCanPayPayments
     implements YouCanPayModule, YouCanPayPaymentsBase {
+  @override
+  List<String> get endpoints => [YouCanPayConstants.endpoints.tokenize];
+
   static final YouCanPayPayments _instance = YouCanPayPayments._();
   static YouCanPayPayments get instance => _instance;
   YouCanPayPayments._();
@@ -23,7 +30,21 @@ final class YouCanPayPayments
     Map<String, dynamic>? metadata,
     Map<String, dynamic>? customer,
   }) {
-    throw UnimplementedError();
+    return YouCanPayNetworkingClient.sendFormRequestFromJson<TokenizeResponse>(
+      endpoint: YouCanPayEndpointBuilder()(endpoints),
+      body: {
+        "amount": amount.toString(),
+        "pri_key": priKey,
+        "currency": currency,
+        "order_id": orderId,
+        if (metadata != null) "metadata": metadata,
+        if (customer != null) "customer": customer,
+      },
+      method: YouCanPayNetworkingClientMethod.post,
+      onSuccess: (map) {
+        return TokenizeResponse.fromMap(map);
+      },
+    );
   }
 
   @override

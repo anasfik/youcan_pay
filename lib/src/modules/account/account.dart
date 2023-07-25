@@ -90,4 +90,8 @@ final class YouCanPayAccounts implements YouCanPayModule, YouCanPayAccountBase {
     // TODO: implement updatePassword
     throw UnimplementedError();
   }
+
+  @override
+  // TODO: implement endpoints
+  List<String> get endpoints => throw UnimplementedError();
 }

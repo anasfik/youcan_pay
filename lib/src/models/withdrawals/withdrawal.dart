@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import '../model.dart';
+
 /// generate model class from json called YouCanPayWithdrawal.
 /// {
 //   "id": "io420po0969-e801-416b-8fe3-0c88f3fff6de",
@@ -15,7 +17,7 @@ import 'package:equatable/equatable.dart';
 //   "created_at": "2022-01-31 15:11:50"
 // }
 
-class YouCanPayWithdrawal extends Equatable {
+class YouCanPayWithdrawal extends YouCanPayDataModel {
   final String id;
   final String amount;
   final String currency;

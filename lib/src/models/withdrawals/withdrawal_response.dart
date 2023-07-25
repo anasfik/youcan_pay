@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-class WithdrawalResponse extends Equatable {
+import '../model.dart';
+
+class WithdrawalResponse extends YouCanPayDataModel {
   final String message;
 
   WithdrawalResponse({

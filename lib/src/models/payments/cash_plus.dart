@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-class CashPlusResponse extends Equatable {
+import '../model.dart';
+
+class CashPlusResponse extends YouCanPayDataModel {
   final String tokenId;
 
   CashPlusResponse({

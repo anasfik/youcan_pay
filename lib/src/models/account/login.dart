@@ -1,7 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
-class LoginResponse extends Equatable {
+import '../model.dart';
+
+class LoginResponse extends YouCanPayDataModel {
   final String token;
 
   LoginResponse({

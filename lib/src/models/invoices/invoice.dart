@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-class YouCanPayInvoice extends Equatable {
+import '../model.dart';
+
+class YouCanPayInvoice extends YouCanPayDataModel {
   final String id;
   final String reference;
   final String name;

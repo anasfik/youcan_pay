@@ -18,6 +18,11 @@ import 'package:youcan_pay/src/utils/consts.dart';
 import 'base/youcan_pay_base.dart';
 
 final class YouCanPay implements YouCanPayBase {
+  static YouCanPay _instance = YouCanPay._();
+  static YouCanPay get instance => _instance;
+
+  YouCanPay._();
+
   String? _baseUrl;
   @override
   YouCanPayAccounts get account => YouCanPayAccounts.instance;

@@ -33,4 +33,8 @@ final class YouCanPayWithdrawals
     // TODO: implement withdrawals
     throw UnimplementedError();
   }
+
+  @override
+  // TODO: implement endpoints
+  List<String> get endpoints => throw UnimplementedError();
 }

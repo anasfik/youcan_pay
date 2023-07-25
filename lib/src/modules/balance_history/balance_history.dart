@@ -7,4 +7,8 @@ final class YouCanPayBalanceHistory implements YouCanPayModule {
 
   @override
   Type get type => runtimeType;
+
+  @override
+  // TODO: implement endpoints
+  List<String> get endpoints => throw UnimplementedError();
 }

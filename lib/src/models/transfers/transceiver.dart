@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-class YouCanPayTransceiver extends Equatable {
+import '../model.dart';
+
+class YouCanPayTransceiver extends YouCanPayDataModel {
   final String id;
   final String firstName;
   final String lastName;

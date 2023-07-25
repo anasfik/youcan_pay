@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-class YouCanPayBlanceHistoryItem extends Equatable {
+import '../model.dart';
+
+class YouCanPayBlanceHistoryItem extends YouCanPayDataModel {
   final String id;
   final String accountId;
   final String displayAmount;

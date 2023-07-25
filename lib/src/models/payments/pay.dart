@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-class PayResponse extends Equatable {
+import '../model.dart';
+
+class PayResponse extends YouCanPayDataModel {
   final bool success;
   final bool isSuccess;
   final String code;
