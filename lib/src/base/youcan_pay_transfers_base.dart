@@ -1,6 +1,7 @@
 import '../models/transfers/transfer.dart';
+import '../utils/enums.dart';
 
-abstract interface class YouCanPayTransfers {
+abstract interface class YouCanPayTransfersBase {
   Future<YouCanPayTransfer> create({
     required String token,
     required int amount,
@@ -8,5 +9,11 @@ abstract interface class YouCanPayTransfers {
     required String message,
   });
 
-// TODO:list all transfers ?? I mean as pages, with sorting...ArgumentError
+  Future transfers({
+    required YouCanPayTransfersSortField sortField,
+    required YouCanPaySortOrder sortOrder,
+    required int limit,
+
+    /// TODO: add filters field.
+  });
 }
