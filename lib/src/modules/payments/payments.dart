@@ -53,13 +53,28 @@ final class YouCanPayPayments
   Future<PayResponse> authorize({
     required String pubKey,
     required String tokenId,
-    required String creditCard,
+    required int creditCard,
     required String cardHolderName,
-    required String cvv,
-    required DateTime expiryDate,
+    required int cvv,
+    required YouCanPayExpireDate expireDate,
   }) {
-    // TODO: implement authorize
-    throw UnimplementedError();
+    return YouCanPayNetworkingClient.sendFormRequestFromJson<PayResponse>(
+      endpoint: YouCanPayEndpointBuilder()([
+        YouCanPayConstants.endpoints.authorize,
+      ]),
+      body: {
+        "pub_key": pubKey,
+        "token_id": tokenId,
+        "credit_card": creditCard,
+        "card_holder_name": cardHolderName,
+        "cvv": cvv,
+        "expire_date": expireDate.toString(),
+      },
+      method: YouCanPayNetworkingClientMethod.post,
+      onSuccess: (map) {
+        return PayResponse.fromMap(map);
+      },
+    );
   }
 
   @override

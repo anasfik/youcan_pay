@@ -13,4 +13,5 @@ class YouCanPayEndpointConstants {
   final init = "init";
   final cashplus = "cashplus";
   final pay = "pay";
+  final authorize = "authorize";
 }

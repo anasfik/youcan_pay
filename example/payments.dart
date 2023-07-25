@@ -8,7 +8,7 @@ void main() async {
   late String paymentToken;
   try {
     final res = await YouCanPay.instance.payments.tokenize(
-      amount: 1500,
+      amount: 150000,
       priKey: "pri_sandbox_9f410153-b941-47f5-9154-c1981",
       currency: "MAD",
       orderId: "orderId",
@@ -41,8 +41,7 @@ void main() async {
       cvv: 112,
       expireDate: YouCanPayExpireDate(month: 10, year: 24),
     );
-
-    print(res.transactionId);
+    print(res.message);
   } on YouCanPayException catch (e) {
     print(e.message);
     print(e.statusCode);

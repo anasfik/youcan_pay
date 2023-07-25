@@ -30,9 +30,9 @@ abstract interface class YouCanPayPaymentsBase {
   Future<PayResponse> authorize({
     required String pubKey,
     required String tokenId,
-    required String creditCard,
+    required int creditCard,
     required String cardHolderName,
-    required String cvv,
-    required DateTime expiryDate,
+    required int cvv,
+    required YouCanPayExpireDate expireDate,
   });
 }
