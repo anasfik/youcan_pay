@@ -145,7 +145,21 @@ final class YouCanPayAccounts implements YouCanPayModule, YouCanPayAccountBase {
     required String currentPassword,
     required String newPassword,
   }) {
-    // TODO: implement updatePassword
-    throw UnimplementedError();
+    return YouCanPayNetworkingClient.sendJsonRequestFromJson<RegisterResponse>(
+      endpoint: YouCanPayEndpointBuilder()([
+        YouCanPayConstants.endpoints.me,
+        YouCanPayConstants.endpoints.password,
+      ]),
+      body: {
+        'current_password': currentPassword,
+        'new_password': newPassword,
+      },
+      method: YouCanPayNetworkingClientMethod.put,
+      customHeaders:
+          HeadersBuilder().addAcceptJsonHeader().addTokenHeader(token).headers,
+      onSuccess: (map) {
+        return RegisterResponse.fromMap(map);
+      },
+    );
   }
 }
