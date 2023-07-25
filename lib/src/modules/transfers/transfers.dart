@@ -33,8 +33,4 @@ final class YouCanPayTransfers
     // TODO: implement transfers
     throw UnimplementedError();
   }
-
-  @override
-  // TODO: implement endpoints
-  List<String> get endpoints => throw UnimplementedError();
 }

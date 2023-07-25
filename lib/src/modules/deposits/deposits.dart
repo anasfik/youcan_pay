@@ -21,8 +21,4 @@ final class YouCanPayDeposits
     // TODO: implement tokenize
     throw UnimplementedError();
   }
-
-  @override
-  // TODO: implement endpoints
-  List<String> get endpoints => throw UnimplementedError();
 }

@@ -5,6 +5,10 @@ import 'package:youcan_pay/src/models/account/register.dart';
 import '../../base/youcan_pay_account_base.dart';
 import '../../base/youcan_pay_module.dart';
 import '../../models/account/user_informations.dart';
+import '../../networking/client.dart';
+import '../../networking/endpoint.dart';
+import '../../utils/consts.dart';
+import '../../utils/enums.dart';
 
 final class YouCanPayAccounts implements YouCanPayModule, YouCanPayAccountBase {
   static final YouCanPayAccounts _instance = YouCanPayAccounts._();
@@ -39,8 +43,23 @@ final class YouCanPayAccounts implements YouCanPayModule, YouCanPayAccountBase {
     required String phone,
     required String password,
   }) {
-    // TODO: implement register
-    throw UnimplementedError();
+    return YouCanPayNetworkingClient.sendFormRequestFromJson<RegisterResponse>(
+      endpoint: YouCanPayEndpointBuilder()([
+        YouCanPayConstants.endpoints.register,
+      ]),
+      body: {
+        'first_name': firstName,
+        'last_name': lastName,
+        'email': email,
+        'phone': phone,
+        'password': password,
+        'password_confirmation': password,
+      },
+      method: YouCanPayNetworkingClientMethod.post,
+      onSuccess: (map) {
+        return RegisterResponse.fromMap(map);
+      },
+    );
   }
 
   @override
@@ -90,8 +109,4 @@ final class YouCanPayAccounts implements YouCanPayModule, YouCanPayAccountBase {
     // TODO: implement updatePassword
     throw UnimplementedError();
   }
-
-  @override
-  // TODO: implement endpoints
-  List<String> get endpoints => throw UnimplementedError();
 }

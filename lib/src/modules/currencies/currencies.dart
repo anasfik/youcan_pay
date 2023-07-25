@@ -15,8 +15,4 @@ final class YouCanPayCurrencies
     // TODO: implement conversionRates
     throw UnimplementedError();
   }
-
-  @override
-  // TODO: implement endpoints
-  List<String> get endpoints => throw UnimplementedError();
 }

@@ -4,7 +4,7 @@ This is Dart/Flutter SDK for [YouCan Pay APIs](https://youcanpay.com/docs), whic
 
 ## SDK progress
 
-- [] [Payment](https://youcanpay.com/docs/api#payment)
+- [x] [Payment](https://youcanpay.com/docs/api#payment)
 - [] [Account](https://youcanpay.com/docs/api#account)
 - [] [Currencies](https://youcanpay.com/docs/api#currencies)
 - [] [Transfers](https://youcanpay.com/docs/api#transfers)
@@ -12,3 +12,6 @@ This is Dart/Flutter SDK for [YouCan Pay APIs](https://youcanpay.com/docs), whic
 - [] [Balance History](https://youcanpay.com/docs/api#balance_history)
 - [] [Withdrawals](https://youcanpay.com/docs/api#withdrawals)
 - [] [Deposit](https://youcanpay.com/docs/api#deposit)
+
+
+## Get Started
