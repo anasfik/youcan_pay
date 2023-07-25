@@ -24,13 +24,27 @@ void main() async {
     print(e.statusCode);
   }
 
+  late String token;
   try {
     final res = await YouCanPay.instance.account.login(
       emailOrPhone: email,
       password: password,
     );
-
+    token = res.token;
     print(res.token);
+  } on YouCanPayException catch (e) {
+    print(e.message);
+    print(e.statusCode);
+  }
+
+  try {
+    final res = await YouCanPay.instance.account.me(
+      token: token,
+    );
+
+    print(res.address);
+    print(res.email);
+    print(res.phone);
   } on YouCanPayException catch (e) {
     print(e.message);
     print(e.statusCode);

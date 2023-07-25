@@ -1,13 +1,23 @@
 class HeadersBuilder {
   final _headers = <String, String>{};
-
+  String? _token;
   Map<String, String> get headers => _headers;
+
+  String get token {
+    assert(_token != null);
+
+    return _token!;
+  }
 
   static final _instance = HeadersBuilder._();
 
   HeadersBuilder._();
 
-  factory HeadersBuilder() => _instance;
+  factory HeadersBuilder({
+    String? token,
+  }) {
+    return _instance;
+  }
 
   HeadersBuilder addHeader({
     required String key,
@@ -31,8 +41,11 @@ class HeadersBuilder {
     );
   }
 
-  HeadersBuilder addTokenHeader() {
-    // Next...
-    return this;
+  HeadersBuilder addTokenHeader([String? token]) {
+    final tokenToUse = token ?? this.token;
+    return addHeader(
+      key: "Authorization",
+      value: "Bearer $tokenToUse",
+    );
   }
 }

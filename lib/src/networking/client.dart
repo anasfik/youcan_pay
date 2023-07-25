@@ -24,8 +24,7 @@ abstract class YouCanPayNetworkingClient {
     );
 
     request.headers.addAll(
-      customHeaders ??
-          HeadersBuilder().addAcceptJsonHeader().addTokenHeader().headers,
+      customHeaders ?? HeadersBuilder().addAcceptJsonHeader().headers,
     );
 
     for (int index = 0; index < body.entries.length; index++) {

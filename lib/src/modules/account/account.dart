@@ -1,6 +1,7 @@
 import 'package:youcan_pay/src/models/account/login.dart';
 
 import 'package:youcan_pay/src/models/account/register.dart';
+import 'package:youcan_pay/src/networking/headers.dart';
 
 import '../../base/youcan_pay_account_base.dart';
 import '../../base/youcan_pay_module.dart';
@@ -42,8 +43,21 @@ final class YouCanPayAccounts implements YouCanPayModule, YouCanPayAccountBase {
   Future<YouCanUserInformations> me({
     required String token,
   }) {
-    // TODO: implement me
-    throw UnimplementedError();
+    return YouCanPayNetworkingClient.sendFormRequestFromJson<
+        YouCanUserInformations>(
+      endpoint: YouCanPayEndpointBuilder()([
+        YouCanPayConstants.endpoints.me,
+      ]),
+      body: {
+        'token': token,
+      },
+      method: YouCanPayNetworkingClientMethod.get,
+      customHeaders:
+          HeadersBuilder().addAcceptJsonHeader().addTokenHeader(token).headers,
+      onSuccess: (map) {
+        return YouCanUserInformations.fromMap(map['data']);
+      },
+    );
   }
 
   @override

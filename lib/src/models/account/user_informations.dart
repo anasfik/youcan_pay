@@ -1,9 +1,8 @@
-
 import '../model.dart';
 
 class YouCanUserInformations extends YouCanPayDataModel {
   final String id;
-  final String identityId;
+  final String? identityId;
   final String firstName;
   final String lastName;
   final String address;
@@ -67,7 +66,7 @@ class YouCanUserInformations extends YouCanPayDataModel {
   factory YouCanUserInformations.fromMap(Map<String, dynamic> map) {
     return YouCanUserInformations(
       id: map['id'] as String,
-      identityId: map['identity_id'] as String,
+      identityId: map['identity_id'] as String?,
       firstName: map['first_name'] as String,
       lastName: map['last_name'] as String,
       address: map['address'] as String,
