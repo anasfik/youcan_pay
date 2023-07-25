@@ -16,3 +16,9 @@ enum YouCanPayTransfersSortField {
   due_by,
   created_at,
 }
+
+enum YouCanPayWithdrawalSortField {
+  amount,
+  paid_at,
+  created_at,
+}
