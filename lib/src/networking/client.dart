@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:youcan_pay/src/networking/headers.dart';
 import 'package:youcan_pay/src/utils/extension.dart';
 
 import '../models/model.dart';

@@ -16,6 +16,6 @@ abstract base class YouCanPayException implements Exception {
 
   @override
   String toString() {
-    return '${this.runtimeType}: $statusCode $message';
+    return '$runtimeType: $statusCode $message';
   }
 }

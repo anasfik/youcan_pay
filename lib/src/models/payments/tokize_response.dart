@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:youcan_pay/src/models/model.dart';
 
 class TokenizeResponse extends YouCanPayDataModel {

@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:youcan_pay/src/models/transfers/transceiver.dart';
 
 import '../model.dart';
