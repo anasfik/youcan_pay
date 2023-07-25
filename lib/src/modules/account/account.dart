@@ -5,6 +5,8 @@ import 'package:youcan_pay/src/networking/headers.dart';
 
 import '../../base/youcan_pay_account_base.dart';
 import '../../base/youcan_pay_module.dart';
+import '../../models/account/logout.dart';
+import '../../models/account/refresh.dart';
 import '../../models/account/stats.dart';
 import '../../models/account/user_informations.dart';
 import '../../networking/client.dart';
@@ -89,19 +91,39 @@ final class YouCanPayAccounts implements YouCanPayModule, YouCanPayAccountBase {
   }
 
   @override
-  Future<LoginResponse> logout({
+  Future<LogoutResponse> logout({
     required String token,
   }) {
-    // TODO: implement logout
-    throw UnimplementedError();
+    return YouCanPayNetworkingClient.sendFormRequestFromJson<LogoutResponse>(
+      endpoint: YouCanPayEndpointBuilder()([
+        YouCanPayConstants.endpoints.logout,
+      ]),
+      body: {},
+      method: YouCanPayNetworkingClientMethod.post,
+      customHeaders:
+          HeadersBuilder().addAcceptJsonHeader().addTokenHeader(token).headers,
+      onSuccess: (map) {
+        return LogoutResponse.fromMap(map);
+      },
+    );
   }
 
   @override
-  Future<LoginResponse> refreshToken({
+  Future<RefreshResponse> refreshToken({
     required String token,
   }) {
-    // TODO: implement refreshToken
-    throw UnimplementedError();
+    return YouCanPayNetworkingClient.sendFormRequestFromJson<RefreshResponse>(
+      endpoint: YouCanPayEndpointBuilder()([
+        YouCanPayConstants.endpoints.refresh,
+      ]),
+      body: {},
+      method: YouCanPayNetworkingClientMethod.post,
+      customHeaders:
+          HeadersBuilder().addAcceptJsonHeader().addTokenHeader(token).headers,
+      onSuccess: (map) {
+        return RefreshResponse.fromMap(map);
+      },
+    );
   }
 
   @override

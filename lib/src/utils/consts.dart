@@ -20,4 +20,6 @@ class YouCanPayEndpointConstants {
   final me = "me";
   final password = "password";
   final stats = "stats";
+  final refresh = "refresh";
+  final logout = 'logout';
 }

@@ -1,5 +1,9 @@
+import 'package:youcan_pay/src/models/account/refresh.dart';
+
 import '../models/account/login.dart';
+import '../models/account/logout.dart';
 import '../models/account/register.dart';
+import '../models/account/stats.dart';
 import '../models/account/user_informations.dart';
 import '../utils/enums.dart';
 
@@ -34,18 +38,18 @@ abstract interface class YouCanPayAccountBase {
     required String newPassword,
   });
 
-  Future stats({
+  Future<StatsResponse> stats({
     required String token,
     required DateTime fromDate,
     required DateTime toDate,
     required YouCanPayStatsInterval interval,
   });
 
-  Future<LoginResponse> refreshToken({
+  Future<RefreshResponse> refreshToken({
     required String token,
   });
 
-  Future<LoginResponse> logout({
+  Future<LogoutResponse> logout({
     required String token,
   });
 }

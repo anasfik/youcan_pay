@@ -85,7 +85,34 @@ void main() async {
     );
 
     print(res.fromDate);
-    print(res.paidTransactionsByDates.map((e) => "${e.date} ${e.totalAmount}"));
+    print(
+      res.paidTransactionsByDates
+          .map((e) => "${e.date} ${e.totalAmount}")
+          .join("\n"),
+    );
+  } on YouCanPayException catch (e) {
+    print(e.message);
+    print(e.statusCode);
+  }
+
+  try {
+    final res = await YouCanPay.instance.account.refreshToken(
+      token: token,
+    );
+
+    print(res.token);
+    token = res.token;
+  } on YouCanPayException catch (e) {
+    print(e.message);
+    print(e.statusCode);
+  }
+
+  try {
+    final isLoggedOut = await YouCanPay.instance.account.logout(
+      token: token,
+    );
+
+    print(isLoggedOut);
   } on YouCanPayException catch (e) {
     print(e.message);
     print(e.statusCode);
