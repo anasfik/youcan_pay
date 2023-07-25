@@ -40,7 +40,7 @@ abstract class YouCanPayNetworkingClient {
     if (res.statusCode.isOk) {
       return onSuccess(decodedResponse);
     } else {
-      final message = decodedResponse["message"] ?? decodedResponse;
+      final message = decodedResponse["message"] ?? decodedResponse.toString();
 
       throw YouCanPayExceptionDecidedByStatusCode(
         statusCode: res.statusCode,

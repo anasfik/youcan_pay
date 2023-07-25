@@ -10,8 +10,11 @@ class YouCanPayEndpointBuilder {
 
   void _ensureTahatAllEndpointsIncludesSlash(List<String> endpointsList) {
     // ! This list is passed by reference, so calling this will modify the original one.
-    endpointsList = endpointsList
-        .map((endpoint) => endpoint.startsWith("/") ? endpoint : "/$endpoint")
-        .toList();
+
+    for (int index = 0; index < endpointsList.length; index++) {
+      if (!endpointsList[index].startsWith("/")) {
+        endpointsList[index] = "/${endpointsList[index]}";
+      }
+    }
   }
 }

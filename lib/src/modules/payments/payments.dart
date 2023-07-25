@@ -12,7 +12,7 @@ import '../../networking/endpoint.dart';
 final class YouCanPayPayments
     implements YouCanPayModule, YouCanPayPaymentsBase {
   @override
-  List<String> get endpoints => [YouCanPayConstants.endpoints.tokenize];
+  List<String> get endpoints => [];
 
   static final YouCanPayPayments _instance = YouCanPayPayments._();
   static YouCanPayPayments get instance => _instance;
@@ -31,9 +31,10 @@ final class YouCanPayPayments
     Map<String, dynamic>? customer,
   }) {
     return YouCanPayNetworkingClient.sendFormRequestFromJson<TokenizeResponse>(
-      endpoint: YouCanPayEndpointBuilder()(endpoints),
+      endpoint:
+          YouCanPayEndpointBuilder()([YouCanPayConstants.endpoints.tokenize]),
       body: {
-        "amount": amount.toString(),
+        "amount": amount,
         "pri_key": priKey,
         "currency": currency,
         "order_id": orderId,
@@ -65,8 +66,20 @@ final class YouCanPayPayments
     required String pubKey,
     required String tokenId,
   }) {
-    // TODO: implement cashPlusInit
-    throw UnimplementedError();
+    return YouCanPayNetworkingClient.sendFormRequestFromJson<CashPlusResponse>(
+      endpoint: YouCanPayEndpointBuilder()([
+        YouCanPayConstants.endpoints.cashplus,
+        YouCanPayConstants.endpoints.init,
+      ]),
+      body: {
+        "pub_key": pubKey,
+        "token_id": tokenId,
+      },
+      method: YouCanPayNetworkingClientMethod.post,
+      onSuccess: (map) {
+        return CashPlusResponse.fromMap(map);
+      },
+    );
   }
 
   @override
