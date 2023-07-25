@@ -23,8 +23,19 @@ final class YouCanPayAccounts implements YouCanPayModule, YouCanPayAccountBase {
     required String emailOrPhone,
     required String password,
   }) {
-    // TODO: implement login
-    throw UnimplementedError();
+    return YouCanPayNetworkingClient.sendFormRequestFromJson<LoginResponse>(
+      endpoint: YouCanPayEndpointBuilder()([
+        YouCanPayConstants.endpoints.login,
+      ]),
+      body: {
+        'email_or_phone': emailOrPhone,
+        'password': password,
+      },
+      method: YouCanPayNetworkingClientMethod.post,
+      onSuccess: (map) {
+        return LoginResponse.fromMap(map);
+      },
+    );
   }
 
   @override

@@ -16,4 +16,5 @@ class YouCanPayEndpointConstants {
   final authorize = "authorize";
   final account = "account";
   final register = "register";
+  final login = "login";
 }
