@@ -1,6 +1,11 @@
 import 'dart:math';
 
+import 'package:youcan_pay/src/exceptions/bad_request.dart';
 import 'package:youcan_pay/src/exceptions/exception.dart';
+import 'package:youcan_pay/src/exceptions/not_found.dart';
+import 'package:youcan_pay/src/exceptions/server.dart';
+import 'package:youcan_pay/src/exceptions/unauthorized.dart';
+import 'package:youcan_pay/src/exceptions/unprocessable_entity.dart';
 import 'package:youcan_pay/src/utils/enums.dart';
 import 'package:youcan_pay/src/youcan_pay.dart';
 
@@ -21,6 +26,30 @@ void main() async {
 
     print(res.message);
   } on YouCanPayException catch (e) {
+    switch (e) {
+      case YouCanPayNotFoundException():
+        print("Not found");
+        break;
+
+      case YouCanPayBadRequestException():
+        print("Bad request");
+        break;
+
+      case YouCanPayServerErrorException():
+        print("Server error");
+        break;
+
+      case YouCanPayUnAuthorizedException():
+        print("UnAuthorized");
+        break;
+
+      case YouCanPayUnprocessableEntityException():
+        print("UnprocessableEntity");
+        break;
+
+      default:
+        print("Unknown error");
+    }
     print(e.message);
     print(e.statusCode);
   }

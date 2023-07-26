@@ -24,6 +24,7 @@ final class YouCanPay implements YouCanPayBase {
   YouCanPay._();
 
   String? _baseUrl;
+
   @override
   YouCanPayAccounts get account => YouCanPayAccounts.instance;
 
