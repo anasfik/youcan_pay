@@ -25,4 +25,5 @@ class YouCanPayEndpointConstants {
   final currency = "currency";
   final conversionRates = "conversion-rates";
   final transfers = "transfers";
+  final deposits = "deposits";
 }
