@@ -6,7 +6,7 @@ abstract interface class YouCanPayTransfersBase {
     required String token,
     required int amount,
     required String identifier,
-    required String message,
+    String? message,
   });
 
   Future transfers({

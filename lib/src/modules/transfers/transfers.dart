@@ -1,6 +1,10 @@
 import 'package:youcan_pay/src/base/youcan_pay_module.dart';
 import 'package:youcan_pay/src/base/youcan_pay_transfers_base.dart';
 import 'package:youcan_pay/src/models/transfers/transfer.dart';
+import 'package:youcan_pay/src/networking/client.dart';
+import 'package:youcan_pay/src/networking/endpoint.dart';
+import 'package:youcan_pay/src/networking/headers.dart';
+import 'package:youcan_pay/src/utils/consts.dart';
 import 'package:youcan_pay/src/utils/enums.dart';
 
 final class YouCanPayTransfers
@@ -17,10 +21,23 @@ final class YouCanPayTransfers
     required String token,
     required int amount,
     required String identifier,
-    required String message,
+    String? message,
   }) {
-    // TODO: implement create
-    throw UnimplementedError();
+    return YouCanPayNetworkingClient.sendFormRequestFromJson(
+      endpoint:
+          YouCanPayEndpointBuilder()([YouCanPayConstants.endpoints.transfers]),
+      body: {
+        'amount': amount,
+        'identifier': identifier,
+        if (message != null) 'message': message,
+      },
+      method: YouCanPayNetworkingClientMethod.post,
+      customHeaders:
+          HeadersBuilder().addAcceptJsonHeader().addTokenHeader(token).headers,
+      onSuccess: (map) {
+        return YouCanPayTransfer.fromMap(map);
+      },
+    );
   }
 
   @override

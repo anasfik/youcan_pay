@@ -24,4 +24,5 @@ class YouCanPayEndpointConstants {
   final logout = 'logout';
   final currency = "currency";
   final conversionRates = "conversion-rates";
+  final transfers = "transfers";
 }
