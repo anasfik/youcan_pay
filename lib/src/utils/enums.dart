@@ -10,10 +10,6 @@ enum YouCanPaySortOrder {
 
 enum YouCanPayTransfersSortField {
   amount,
-  name,
-  active,
-  status,
-  due_by,
   created_at,
 }
 

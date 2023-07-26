@@ -7,6 +7,8 @@ import 'package:youcan_pay/src/networking/headers.dart';
 import 'package:youcan_pay/src/utils/consts.dart';
 import 'package:youcan_pay/src/utils/enums.dart';
 
+import '../../models/transfers/transfers.dart';
+
 final class YouCanPayTransfers
     implements YouCanPayModule, YouCanPayTransfersBase {
   static final YouCanPayTransfers _instance = YouCanPayTransfers._();
@@ -35,19 +37,32 @@ final class YouCanPayTransfers
       customHeaders:
           HeadersBuilder().addAcceptJsonHeader().addTokenHeader(token).headers,
       onSuccess: (map) {
-        return YouCanPayTransfer.fromMap(map);
+        return YouCanPayTransfer.fromMap(map['data']);
       },
     );
   }
 
   @override
-  Future transfers({
+  Future<YouCanPayTransfersPagination> transfers({
     required String token,
-    required YouCanPayTransfersSortField sortField,
-    required YouCanPaySortOrder sortOrder,
-    required int limit,
+    YouCanPayTransfersSortField? sortField,
+    YouCanPaySortOrder? sortOrder,
+    int? limit,
   }) {
-    // TODO: implement transfers
-    throw UnimplementedError();
+    return YouCanPayNetworkingClient.sendFormRequestFromJson<
+        YouCanPayTransfersPagination>(
+      endpoint: YouCanPayEndpointBuilder()([
+        YouCanPayConstants.endpoints.transfers,
+        "?sort_field=${sortField?.name}",
+        "&sort_order=${sortOrder?.name}",
+      ]),
+      body: {},
+      method: YouCanPayNetworkingClientMethod.get,
+      customHeaders:
+          HeadersBuilder().addAcceptJsonHeader().addTokenHeader(token).headers,
+      onSuccess: (map) {
+        return YouCanPayTransfersPagination.fromMap(map);
+      },
+    );
   }
 }

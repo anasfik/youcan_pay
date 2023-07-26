@@ -11,9 +11,9 @@ abstract interface class YouCanPayTransfersBase {
 
   Future transfers({
     required String token,
-    required YouCanPayTransfersSortField sortField,
-    required YouCanPaySortOrder sortOrder,
-    required int limit,
+    YouCanPayTransfersSortField? sortField,
+    YouCanPaySortOrder? sortOrder,
+    int? limit,
 
     /// TODO: add filters field.
   });

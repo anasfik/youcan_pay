@@ -15,7 +15,17 @@ void main() async {
 
     print(res.id);
   } on YouCanPayException catch (e) {
-    print(e is YouCanPayUnprocessableEntityException);
+    print(e.message);
+    print(e.statusCode);
+  }
+
+  try {
+    final res = await YouCanPay.instance.transfers.transfers(
+      token: token,
+    );
+
+    print(res.data);
+  } on YouCanPayException catch (e) {
     print(e.message);
     print(e.statusCode);
   }

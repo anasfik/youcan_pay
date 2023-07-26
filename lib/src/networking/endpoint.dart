@@ -12,7 +12,11 @@ class YouCanPayEndpointBuilder {
     // ! This list is passed by reference, so calling this will modify the original one.
 
     for (int index = 0; index < endpointsList.length; index++) {
-      if (!endpointsList[index].startsWith("/")) {
+      bool isEndpointWithoutSlash = !endpointsList[index].startsWith("/");
+      bool isQuery = endpointsList[index].startsWith("?") ||
+          endpointsList[index].startsWith("&");
+
+      if (isEndpointWithoutSlash && !isQuery) {
         endpointsList[index] = "/${endpointsList[index]}";
       }
     }
