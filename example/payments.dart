@@ -46,4 +46,19 @@ void main() async {
     print(e.message);
     print(e.statusCode);
   }
+
+  try {
+    final res = await YouCanPay.instance.payments.authorize(
+      pubKey: "pub_sandbox_10277a4b-96a0-4d1a-b632-d9886",
+      tokenId: paymentToken,
+      cardHolderName: "somthing",
+      creditCard: 4242424242424242,
+      cvv: 112,
+      expireDate: YouCanPayExpireDate(month: 10, year: 24),
+    );
+    print(res.message);
+  } on YouCanPayException catch (e) {
+    print(e.message);
+    print(e.statusCode);
+  }
 }

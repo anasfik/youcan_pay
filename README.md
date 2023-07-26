@@ -2,7 +2,7 @@
 
 This is Dart/Flutter SDK for [YouCan Pay APIs](https://youcanpay.com/docs), which helps you to integrate YouCan Pay into your Dart/Flutter project easily, and make your life more easier.
 
-### Key features
+## Key features
 
 - Easy to use methods that reflects the API endpoints based on it's documentation.
 - Developer friendly, you will feel at home working with this package.
@@ -24,18 +24,18 @@ This is Dart/Flutter SDK for [YouCan Pay APIs](https://youcanpay.com/docs), whic
 
 ### Test progress (0%)
 
-- [] [Account](https://youcanpay.com/docs/api#account)
-- [] [Payment](https://youcanpay.com/docs/api#payment)
-- [] [Currencies](https://youcanpay.com/docs/api#currencies)
-- [] [Transfers](https://youcanpay.com/docs/api#transfers)
-- [] [Invoices](https://youcanpay.com/docs/api#invoices)
-- [] [Balance History](https://youcanpay.com/docs/api#balance_history)
-- [] [Withdrawals](https://youcanpay.com/docs/api#withdrawals)
-- [] [Deposit](https://youcanpay.com/docs/api#deposit)
+- [x] [Account](https://youcanpay.com/docs/api#account)
+- [-] [Payment](https://youcanpay.com/docs/api#payment)
+- [-] [Currencies](https://youcanpay.com/docs/api#currencies)
+- [-] [Transfers](https://youcanpay.com/docs/api#transfers)
+- [-] [Invoices](https://youcanpay.com/docs/api#invoices)
+- [-] [Balance History](https://youcanpay.com/docs/api#balance_history)
+- [-] [Withdrawals](https://youcanpay.com/docs/api#withdrawals)
+- [-] [Deposit](https://youcanpay.com/docs/api#deposit)
 
 ## Usage
 
-#### Quick Overview
+### Quick Overview
 
 This package provides access to each module of the SDK via the one & only singleton of it, `YouCanPay.instance`.
 
@@ -70,9 +70,11 @@ RegisterResponse registerResponse = await YouCanPay.instance.account.register(
 ```
 
 ### Error handling
+
 All methods of this package will throw an exception if something went wrong, you can catch it and handle it as you want.
 
 ##### Example 1: 
+
 You can catch the exception and get the error message from it like this:
 
 ```dart
@@ -134,3 +136,69 @@ it is up to your case to handle the error as you want, you can also use the `sta
 
 ### Documentation
 
+#### Payment
+
+#### Tokenize Payment
+
+You can tokenize a new payment by using the `tokenize` method.
+
+```dart
+  TokenizeResponse response = await YouCanPay.instance.payments.tokenize(
+      amount: 150000,
+      priKey: "pri_sandbox_9f410153-b941-47f5-9154-c1981",
+      currency: "MAD",
+      orderId: "orderId",
+    );
+    
+    print(response.token); // ...
+```
+
+#### CashPlus Gateway
+
+This will process the payment using CashPlus Gateway
+
+```dart
+    final res = await YouCanPay.instance.payments.cashPlusInit(
+    pubKey: "YOUR_PUBLIC_KEY",
+     tokenId: "PAYMENT_TOKEN",
+    );
+
+    print(res.tokenId);
+    print(res.transactionId);
+```
+
+#### Card Gateway Sale
+
+This will process a payment using a sale operation. currently, the package supports only direct payments that are authorized and don't required 3ds authorization.
+
+```dart
+    final res = await YouCanPay.instance.payments.pay(
+      pubKey: "YOUR_PUBLIC_KEY",
+      tokenId: "PAYMENT_TOKEN",
+      cardHolderName: "Anas FIKHI",
+      creditCard: 4242424242424242,
+      cvv: 112,
+      expireDate: YouCanPayExpireDate(month: 10, year: 24),
+    );
+
+    print(res.message); // ...
+    print(res.transactionId); // ...
+```
+
+#### Card Gateway Authorization
+
+This will process a payment using a authorization operation. This is faster than the sale operation as it only authorizes the payment. The capture is then done asynchronously within 30 seconds of the authorization.
+
+```dart
+    final res = await YouCanPay.instance.payments.authorize(
+      pubKey: "YOUR_PUBLIC_KEY",
+      tokenId: "PAYMENT_TOKEN",
+      cardHolderName: "Anas FIKHI",
+      creditCard: 4242424242424242,
+      cvv: 112,
+      expireDate: YouCanPayExpireDate(month: 10, year: 24),
+    );
+
+    print(res.message); // ...
+    print(res.transactionId); // ...
+```
