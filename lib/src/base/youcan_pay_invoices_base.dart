@@ -1,5 +1,6 @@
 import '../models/invoices/invoice.dart';
 import '../models/invoices/invoices.dart';
+import '../models/invoices/tokenize.dart';
 import '../utils/enums.dart';
 
 abstract interface class YouCanPayInvoicesBase {
@@ -23,5 +24,10 @@ abstract interface class YouCanPayInvoicesBase {
     int? limit,
 
     /// TODO: add filters field.
+  });
+
+  Future<YouCanInvoiceTokenization> tokenize({
+    required String token,
+    required String invoiceId,
   });
 }

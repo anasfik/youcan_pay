@@ -1,3 +1,4 @@
+import 'package:youcan_pay/src/models/invoices/tokenize.dart';
 import 'package:youcan_pay/src/utils/enums.dart';
 
 import '../../base/youcan_pay_invoices_base.dart';
@@ -75,6 +76,28 @@ final class YouCanPayInvoices
           HeadersBuilder().addAcceptJsonHeader().addTokenHeader(token).headers,
       onSuccess: (map) {
         return YouCanPayInvoicesPagination.fromMap(map);
+      },
+    );
+  }
+
+  @override
+  Future<YouCanInvoiceTokenization> tokenize({
+    required String token,
+    required String invoiceId,
+  }) {
+    return YouCanPayNetworkingClient.sendJsonRequestFromJson<
+        YouCanInvoiceTokenization>(
+      endpoint: YouCanPayEndpointBuilder()([
+        YouCanPayConstants.endpoints.invoices,
+        YouCanPayConstants.endpoints.tokenize,
+        invoiceId,
+      ]),
+      body: {},
+      method: YouCanPayNetworkingClientMethod.post,
+      customHeaders:
+          HeadersBuilder().addAcceptJsonHeader().addTokenHeader(token).headers,
+      onSuccess: (map) {
+        return YouCanInvoiceTokenization.fromMap(map['data']);
       },
     );
   }
