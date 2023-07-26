@@ -39,3 +39,8 @@ enum YouCanPayStatsInterval {
   yesterday,
   thisWeek,
 }
+
+enum YouCanPayPaymentsMethod {
+  bank_account,
+  cashplus,
+}

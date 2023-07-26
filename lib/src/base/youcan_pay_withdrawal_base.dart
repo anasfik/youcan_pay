@@ -5,15 +5,15 @@ import '../utils/enums.dart';
 abstract interface class YouCanPayWithdrawalBase {
   Future<WithdrawalResponse> create({
     required String token,
-    required String paymentMethod,
+    required YouCanPayPaymentsMethod paymentMethod,
     required int amount,
-    required String withdrawalBankAccountId,
+    String? withdrawalBankAccountId,
   });
 
   Future withdrawals({
     required String token,
-    required YouCanPayWithdrawalSortField sortField,
-    required YouCanPaySortOrder sortOrder,
-    required int limit,
+    YouCanPayWithdrawalSortField? sortField,
+    YouCanPaySortOrder? sortOrder,
+    int? limit,
   });
 }

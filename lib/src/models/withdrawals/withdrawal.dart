@@ -1,20 +1,4 @@
-
 import '../model.dart';
-
-/// generate model class from json called YouCanPayWithdrawal.
-/// {
-//   "id": "io420po0969-e801-416b-8fe3-0c88f3fff6de",
-//   "display_amount": {
-//   "amount": "50000",
-//   "currency": "MAD"
-//   },
-//   "status": 0,
-//   "status_name": "pending",
-//   "provider_id": 2,
-//   "provider_name": "cashplus",
-//   "paid_at": null,
-//   "created_at": "2022-01-31 15:11:50"
-// }
 
 class YouCanPayWithdrawal extends YouCanPayDataModel {
   final String id;

@@ -34,8 +34,14 @@ abstract class YouCanPayNetworkingClient {
 
     final res = await request.send();
     final resString = await res.stream.bytesToString();
-    final decodedResponse = jsonDecode(resString);
-
+    late Map<String, dynamic> decodedResponse;
+    try {
+      decodedResponse = jsonDecode(resString);
+    } catch (e) {
+      throw YouCanPayExceptionDecidedByStatusCode(
+        statusCode: res.statusCode,
+      )(resString);
+    }
     if (res.statusCode.isOk) {
       return onSuccess(decodedResponse);
     } else {
