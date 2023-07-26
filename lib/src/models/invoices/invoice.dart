@@ -1,4 +1,3 @@
-
 import '../model.dart';
 
 class YouCanPayInvoice extends YouCanPayDataModel {
@@ -8,10 +7,10 @@ class YouCanPayInvoice extends YouCanPayDataModel {
   final String displayAmount;
   final int status;
   final bool isActive;
-  final String description;
+  final String? description;
   final String? dueBy;
   final String accountId;
-  final String alias;
+  final String? alias;
 
   YouCanPayInvoice({
     required this.id,
@@ -48,10 +47,10 @@ class YouCanPayInvoice extends YouCanPayDataModel {
       displayAmount: map['display_amount'] as String,
       status: map['status'] as int,
       isActive: map['is_active'] as bool,
-      description: map['description'] as String,
+      description: map['description'] as String?,
       dueBy: map['due_by'] as String?,
       accountId: map['account_id'] as String,
-      alias: map['alias'] as String,
+      alias: map['alias'] as String?,
     );
   }
 }

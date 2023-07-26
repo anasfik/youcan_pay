@@ -28,4 +28,5 @@ class YouCanPayEndpointConstants {
   final transfers = "transfers";
   final deposits = "deposits";
   final recent = "recent";
+  final invoices = 'invoices';
 }

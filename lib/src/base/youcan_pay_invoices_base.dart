@@ -1,25 +1,26 @@
+import '../models/invoices/invoice.dart';
+import '../models/invoices/invoices.dart';
 import '../utils/enums.dart';
 
 abstract interface class YouCanPayInvoicesBase {
-  /// TODO; figure out how exactly those APIs are working from the docs.
-
-  Future create({
-    required String reference,
+  Future<YouCanPayInvoice> create({
+    String? reference,
+    required String token,
     required String name,
     required int amount,
     required String currency,
     required int contactOption,
-    required String description,
-    required String to,
-    required bool active,
-    required String content,
+    String? description,
+    String? to,
+    int? active,
+    String? content,
   });
 
-  Future invoices({
+  Future<YouCanPayInvoicesPagination> invoices({
     required String token,
-    required YouCanPayInvoicesSortField sortField,
-    required YouCanPaySortOrder sortOrder,
-    required int limit,
+    YouCanPayInvoicesSortField? sortField,
+    YouCanPaySortOrder? sortOrder,
+    int? limit,
 
     /// TODO: add filters field.
   });
