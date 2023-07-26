@@ -1,5 +1,6 @@
 import 'package:youcan_pay/src/base/youcan_pay_module.dart';
 import 'package:youcan_pay/src/base/youcan_pay_transfers_base.dart';
+import 'package:youcan_pay/src/models/transfers/recent_recipients.dart';
 import 'package:youcan_pay/src/models/transfers/transfer.dart';
 import 'package:youcan_pay/src/networking/client.dart';
 import 'package:youcan_pay/src/networking/endpoint.dart';
@@ -62,6 +63,25 @@ final class YouCanPayTransfers
           HeadersBuilder().addAcceptJsonHeader().addTokenHeader(token).headers,
       onSuccess: (map) {
         return YouCanPayTransfersPagination.fromMap(map);
+      },
+    );
+  }
+
+  @override
+  Future<YouCanPayRecentRecipients> recentRecipients({required String token}) {
+    return YouCanPayNetworkingClient.sendFormRequestFromJson<
+        YouCanPayRecentRecipients>(
+      endpoint: YouCanPayEndpointBuilder()([
+        YouCanPayConstants.endpoints.transfers,
+        YouCanPayConstants.endpoints.accounts,
+        YouCanPayConstants.endpoints.recent,
+      ]),
+      body: {},
+      method: YouCanPayNetworkingClientMethod.get,
+      customHeaders:
+          HeadersBuilder().addAcceptJsonHeader().addTokenHeader(token).headers,
+      onSuccess: (map) {
+        return YouCanPayRecentRecipients.fromMap(map);
       },
     );
   }

@@ -15,6 +15,7 @@ class YouCanPayEndpointConstants {
   final pay = "pay";
   final authorize = "authorize";
   final account = "account";
+  final accounts = "accounts";
   final register = "register";
   final login = "login";
   final me = "me";
@@ -26,4 +27,5 @@ class YouCanPayEndpointConstants {
   final conversionRates = "conversion-rates";
   final transfers = "transfers";
   final deposits = "deposits";
+  final recent = "recent";
 }

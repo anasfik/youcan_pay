@@ -1,4 +1,8 @@
+import 'package:youcan_pay/src/modules/transfers/transfers.dart';
+
+import '../models/transfers/recent_recipients.dart';
 import '../models/transfers/transfer.dart';
+import '../models/transfers/transfers.dart';
 import '../utils/enums.dart';
 
 abstract interface class YouCanPayTransfersBase {
@@ -9,12 +13,16 @@ abstract interface class YouCanPayTransfersBase {
     String? message,
   });
 
-  Future transfers({
+  Future<YouCanPayTransfersPagination> transfers({
     required String token,
     YouCanPayTransfersSortField? sortField,
     YouCanPaySortOrder? sortOrder,
     int? limit,
 
     /// TODO: add filters field.
+  });
+
+  Future<YouCanPayRecentRecipients> recentRecipients({
+    required String token,
   });
 }

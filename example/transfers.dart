@@ -29,4 +29,15 @@ void main() async {
     print(e.message);
     print(e.statusCode);
   }
+
+  try {
+    final res = await YouCanPay.instance.transfers.recentRecipients(
+      token: token,
+    );
+
+    print(res.data);
+  } on YouCanPayException catch (e) {
+    print(e.message);
+    print(e.statusCode);
+  }
 }
