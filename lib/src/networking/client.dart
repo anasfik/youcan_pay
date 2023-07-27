@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:youcan_pay/src/networking/headers.dart';
+import 'package:youcan_pay/src/utils/consts.dart';
 import 'package:youcan_pay/src/utils/extension.dart';
 
 import '../models/model.dart';
@@ -16,6 +17,7 @@ abstract class YouCanPayNetworkingClient {
     Map<String, String>? customHeaders,
     required T Function(Map<String, dynamic> decodedResponse) onSuccess,
   }) async {
+    _assertMatchingKeysWithSandboxMode(body.entries);
     final request = http.MultipartRequest(
       method.name.toUpperCase(),
       Uri.parse(endpoint),
@@ -58,6 +60,8 @@ abstract class YouCanPayNetworkingClient {
     Map<String, String>? customHeaders,
     required T Function(Map<String, dynamic> decodedResponse) onSuccess,
   }) async {
+    _assertMatchingKeysWithSandboxMode(body.entries);
+
     switch (method) {
       case YouCanPayNetworkingClientMethod.get:
         return _getRequestFromJson(
@@ -157,6 +161,27 @@ abstract class YouCanPayNetworkingClient {
       throw YouCanPayExceptionDecidedByStatusCode(
         statusCode: res.statusCode,
       )(message);
+    }
+  }
+
+  static void _assertMatchingKeysWithSandboxMode(
+    Iterable<MapEntry<String, dynamic>> mapEndtries,
+  ) {
+    final isSandbox = YouCanPayConstants.isSandbox;
+
+    for (int index = 0; index < mapEndtries.length; index++) {
+      final current = mapEndtries.elementAt(index);
+      final key = current.key;
+      final value = current.value;
+
+      if (key == "pub_key" || key == "pri_key") {
+        assert(value.contains("sandbox") == isSandbox, """
+         You are setting the package to the sandbox mode, accuratly you did:
+         YouCanPay.instance.isSandbox = true;
+
+         but the keys you are using are not sandbox keys, please use sandbox keys.
+        """);
+      }
     }
   }
 }

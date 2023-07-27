@@ -3,7 +3,7 @@ import 'package:youcan_pay/src/models/payments/expiry_date.dart';
 import 'package:youcan_pay/src/youcan_pay.dart';
 
 void main() async {
-  YouCanPay.instance.isSandbox = true;
+  // YouCanPay.instance.isSandbox = true;
 
   late String paymentToken;
   try {
