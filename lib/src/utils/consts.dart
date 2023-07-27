@@ -1,8 +1,8 @@
 abstract class YouCanPayConstants {
   static bool isSandbox = false;
 
-  static String baseUrl =
-      "https://youcanpay.com/${isSandbox ? 'sandbox/' : ''}api";
+  static String baseUrl = "https://youcanpay.com/api";
+  static String sandboxBaseUrl = "https://youcanpay.com/sandbox/api";
 
   static YouCanPayEndpointConstants get endpoints =>
       YouCanPayEndpointConstants();
@@ -10,6 +10,7 @@ abstract class YouCanPayConstants {
 
 class YouCanPayEndpointConstants {
   final tokenize = "tokenize";
+  final apiTokenize = "api/tokenize";
   final init = "init";
   final cashplus = "cashplus";
   final pay = "pay";

@@ -1,11 +1,34 @@
 import 'package:youcan_pay/src/youcan_pay.dart';
 
+import '../utils/consts.dart';
+
 class YouCanPayEndpointBuilder {
   String call(List<String> endpoints) {
-    final baseUrl = YouCanPay.instance.baseUrl;
+    final baseUrl = YouCanPayConstants.baseUrl;
+    final sandboxBaseUrl = YouCanPayConstants.sandboxBaseUrl;
+
     _ensureTahatAllEndpointsIncludesSlash(endpoints);
 
-    return [baseUrl, ...endpoints].join("");
+    final isSandbox = YouCanPay.instance.isSandbox;
+
+    final sandBoxModeEndpoints = [
+      YouCanPayConstants.endpoints.apiTokenize,
+      YouCanPayConstants.endpoints.authorize,
+      YouCanPayConstants.endpoints.cashplus,
+      "/" + YouCanPayConstants.endpoints.pay,
+    ];
+
+    final liveModeFullEnpointUrl = [baseUrl, ...endpoints].join("");
+    if (isSandbox) {
+      for (int index = 0; index < sandBoxModeEndpoints.length; index++) {
+        final current = sandBoxModeEndpoints[index];
+        if (liveModeFullEnpointUrl.contains(current)) {
+          return [sandboxBaseUrl, ...endpoints].join("");
+        }
+      }
+    }
+
+    return liveModeFullEnpointUrl;
   }
 
   void _ensureTahatAllEndpointsIncludesSlash(List<String> endpointsList) {

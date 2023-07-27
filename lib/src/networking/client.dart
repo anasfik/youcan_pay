@@ -9,8 +9,6 @@ import '../utils/enums.dart';
 import '../utils/exception_decider.dart';
 
 abstract class YouCanPayNetworkingClient {
-  // HttpClient client = HttpClient();
-
   static Future<T> sendFormRequestFromJson<T extends YouCanPayDataModel>({
     required String endpoint,
     required Map<String, dynamic> body,

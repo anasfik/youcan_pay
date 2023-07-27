@@ -10,6 +10,8 @@ import 'package:youcan_pay/src/utils/enums.dart';
 import 'package:youcan_pay/src/youcan_pay.dart';
 
 void main() async {
+  YouCanPay.instance.isSandbox = true;
+
   final random = Random().nextInt(99999999);
 
   final email = "example$random@gmail.com";
