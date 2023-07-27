@@ -1,5 +1,6 @@
 import 'package:youcan_pay/src/models/account/refresh.dart';
 
+import '../models/account/account_config.dart';
 import '../models/account/login.dart';
 import '../models/account/logout.dart';
 import '../models/account/register.dart';
@@ -51,5 +52,9 @@ abstract interface class YouCanPayAccountBase {
 
   Future<LogoutResponse> logout({
     required String token,
+  });
+
+  Future<YouCanPayAccountConfig> accounfConfig({
+    required String pubKey,
   });
 }

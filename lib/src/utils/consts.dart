@@ -32,4 +32,5 @@ class YouCanPayEndpointConstants {
   final invoices = 'invoices';
   final balanceHistory = 'balance-history';
   final withdrawals = "withdrawals";
+  final getAccountConfigs = "get-account-configs";
 }

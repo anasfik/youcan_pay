@@ -12,6 +12,15 @@ import 'package:youcan_pay/src/youcan_pay.dart';
 void main() async {
   YouCanPay.instance.isSandbox = true;
 
+  try {
+    final res = await YouCanPay.instance.account.accounfConfig(
+      pubKey: "pub_0e217f99-b81c-426e-afd8-0c7c16e7",
+    );
+
+    print(res.cashPlusTransactionEnabled);
+  } catch (e) {
+    print(e);
+  }
   final random = Random().nextInt(99999999);
 
   final email = "example$random@gmail.com";

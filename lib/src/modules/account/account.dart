@@ -1,3 +1,4 @@
+import 'package:youcan_pay/src/models/account/account_config.dart';
 import 'package:youcan_pay/src/models/account/login.dart';
 
 import 'package:youcan_pay/src/models/account/register.dart';
@@ -195,6 +196,25 @@ final class YouCanPayAccounts implements YouCanPayModule, YouCanPayAccountBase {
           HeadersBuilder().addAcceptJsonHeader().addTokenHeader(token).headers,
       onSuccess: (map) {
         return RegisterResponse.fromMap(map);
+      },
+    );
+  }
+
+  @override
+  Future<YouCanPayAccountConfig> accounfConfig({
+    required String pubKey,
+  }) {
+    return YouCanPayNetworkingClient.sendJsonRequestFromJson<
+        YouCanPayAccountConfig>(
+      endpoint: YouCanPayEndpointBuilder()([
+        YouCanPayConstants.endpoints.getAccountConfigs,
+        pubKey,
+      ]),
+      body: {},
+      method: YouCanPayNetworkingClientMethod.get,
+      customHeaders: HeadersBuilder().addAcceptJsonHeader().headers,
+      onSuccess: (map) {
+        return YouCanPayAccountConfig.fromMap(map);
       },
     );
   }
