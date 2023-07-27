@@ -1,9 +1,18 @@
 import 'package:equatable/equatable.dart';
 
+/// {@template expire_date}
+/// Represents the expire date of a card.
+/// {@endtemplate}
 class YouCanPayExpireDate extends Equatable {
+  /// The month of the expire date.
   final int month;
+
+  /// The year of the expire date.
   final int year;
 
+  /// Creates a new instance of the [YouCanPayExpireDate] class.
+  ///
+  /// {@macro expire_date}
   YouCanPayExpireDate({
     required this.month,
     required this.year,

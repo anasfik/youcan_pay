@@ -1,17 +1,40 @@
 import '../model.dart';
 
+/// {@template invoice}
+/// Represents the response returned by the invoice API endpoint.
+/// {@endtemplate}
 class YouCanPayInvoice extends YouCanPayDataModel {
+  /// The unique identifier of the invoice.
   final String id;
+
+  /// The reference of the invoice.
   final String reference;
+
+  /// The name of the invoice.
   final String name;
+
+  /// The amount of the invoice.
   final String displayAmount;
+
+  /// The status of the invoice.
   final int status;
+
+  /// The status of the invoice.
   final bool isActive;
+
+  /// The description of the invoice.
   final String? description;
+
+  /// The due by date of the invoice.
   final String? dueBy;
+
+  /// The unique identifier of the account.
   final String accountId;
+
+  /// The alias of the account.
   final String? alias;
 
+  ///  Creates a new instance of the [YouCanPayInvoice] class.
   YouCanPayInvoice({
     required this.id,
     required this.reference,
@@ -39,6 +62,7 @@ class YouCanPayInvoice extends YouCanPayDataModel {
         alias,
       ];
 
+  /// Creates a new instance of the [YouCanPayInvoice] class from a JSON [map].
   factory YouCanPayInvoice.fromMap(Map<String, dynamic> map) {
     return YouCanPayInvoice(
       id: map['id'] as String,
