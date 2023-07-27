@@ -24,7 +24,7 @@ This is Dart/Flutter SDK for [YouCan Pay APIs](https://youcanpay.com/docs), whic
 
 ### Test progress (0%)
 
-- [x] [Account](https://youcanpay.com/docs/api#account)
+- [-] [Account](https://youcanpay.com/docs/api#account)
 - [-] [Payment](https://youcanpay.com/docs/api#payment)
 - [-] [Currencies](https://youcanpay.com/docs/api#currencies)
 - [-] [Transfers](https://youcanpay.com/docs/api#transfers)
@@ -201,4 +201,37 @@ This will process a payment using a authorization operation. This is faster than
 
     print(res.message); // ...
     print(res.transactionId); // ...
+```
+
+### Account
+
+#### Register for an account
+
+You can create a new account by using the `register` method.
+
+```dart
+   final res = await YouCanPay.instance.account.register(
+     email: "john@example.com",
+     firstName: "John",
+     lastName: "Doe",
+     password: "123456789",
+     phone: "+212611223344", 
+   );
+
+    print(res.message);
+  
+```
+
+#### Authentication
+
+You can authenticate a user by using the `authenticate` method, it will return a `AuthenticateResponse` object that contains the user's token that you can use in the next requests.
+
+```dart
+
+   final res = await YouCanPay.instance.account.login(
+     emailOrPhone: email,
+     password: password,
+   );
+   
+   print(res.token);
 ```
