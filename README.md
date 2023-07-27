@@ -332,5 +332,45 @@ You can get the convertion rates of a currency by using the `convertionRates` me
    print(res.baseCurrency);
    print(res.conversionRates["MAD"]);
    print(res.conversionRates["USD"]);
+
 ```
 
+### Transfers
+
+#### Create a transfer
+
+You can create a new transfer by using the `create` method:
+
+```dart
+   final res = await YouCanPay.instance.transfers.create(
+     token: token,
+     amount: 1000,
+     identifier: "work@gwhyyy.com",
+   );
+
+    print(res.id); // The transfer's id
+```
+
+#### List transfers
+
+To list all the transfers of a user, you can use the `transfers` method:
+
+```dart
+   final res = await YouCanPay.instance.transfers.transfers(
+     token: token,
+   );
+
+    print(res.data.map((e) => e.id).toList()); // The list of transfers ids
+```
+
+#### Recent Recipients
+
+To get the recent recipients, you can use the `recentRecipients` method:
+
+```dart
+   final res = await YouCanPay.instance.transfers.recentRecipients(
+     token: token,
+   );
+
+    print(res.data.map((e) => e.id).toList()); // The list of transfers ids
+```
