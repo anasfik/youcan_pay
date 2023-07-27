@@ -1,3 +1,3 @@
-## 1.0.0
+## 0.8.1
 
-- Initial version.
+-- THe initial devlopemnt deployed version of the package

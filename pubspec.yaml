@@ -1,12 +1,13 @@
 name: youcan_pay
-description: A starting point for Dart libraries or applications.
-version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+description: A Dart/Flutter SDK for Youcan Pay APIs.
+version: 0.8.1
+repository: https://github.com/anasfik/youcan_pay
+documentation: https://github.com/anasfik/youcan_pay/blob/main/README.md
+issue_tracker: https://github.com/anasfik/youcan_pay/issues
 
 environment:
   sdk: ^3.0.0
 
-# Add regular dependencies here.
 dependencies:
   equatable: ^2.0.5
   http: ^1.1.0
