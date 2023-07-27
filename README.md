@@ -227,11 +227,93 @@ You can create a new account by using the `register` method.
 You can authenticate a user by using the `authenticate` method, it will return a `AuthenticateResponse` object that contains the user's token that you can use in the next requests.
 
 ```dart
-
    final res = await YouCanPay.instance.account.login(
      emailOrPhone: email,
      password: password,
    );
    
    print(res.token);
+```
+
+#### Account Information
+
+You can get a user related informations by using the `me` method that requires only the user's token.
+
+```dart
+   final res = await YouCanPay.instance.account.me(
+     token: "THE_USER_TOKEN",
+   );
+   
+   print(res.email);
+   print(res.address);
+   print(res.phone);
+```
+
+#### Update Account Information
+
+In order to update a user's account informations, you can use the `updateAccount` method:
+
+```dart
+
+   final res = await YouCanPay.instance.account.updateAccount(
+     token: token,
+     firstName: "anas fikhi",
+     adress: "...",
+   );
+   
+   print(res.message);
+```
+
+#### Update Account Password
+
+In order to update a user's password, you can use the `updatePassword` method:
+
+```dart
+
+   final res = await YouCanPay.instance.account.updatePassword(
+     token: token,
+     password: "newPassword",
+   );
+   
+   print(res.message);
+```
+
+#### Account Stats
+
+In order to get a user's account stats, you can use the `stats` method:
+
+```dart
+   final res = await YouCanPay.instance.account.stats(
+     token: token,
+     fromDate: DateTime.now().subtract(Duration(days: 5)),
+     toDate: DateTime.now(),
+     interval: YouCanPayStatsInterval.thisWeek,
+    );
+   
+   print(res.totalRevenue);
+   print(res.paidTransactionsByDates);
+```
+
+#### Refresh Auth Token
+
+To refresh a user's auth token, you can use the `refreshToken` method:
+
+```dart
+   final res = await YouCanPay.instance.account.refreshToken(
+     token: token,
+   );
+   
+   print(res.token); // The new token
+```
+
+#### Logout
+
+To logout a user, you can use the `logout` method. This methpd will invalidate the current user's token, so he will not be able to use it anymore until he authenticates again.
+
+```dart
+   final res = await YouCanPay.instance.account.logout(
+     token: token,
+   );
+   
+   print(res.message);
 ```

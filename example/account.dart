@@ -84,6 +84,7 @@ void main() async {
     final res = await YouCanPay.instance.account.updateAccount(
       token: token,
       firstName: "anas fikhi",
+      adress: "...",
     );
 
     print(res.message);
@@ -114,6 +115,7 @@ void main() async {
     );
 
     print(res.fromDate);
+    print(res.totalRevenue);
     print(
       res.paidTransactionsByDates
           .map((e) => "${e.date} ${e.totalAmount}")
