@@ -1,6 +1,6 @@
 name: youcan_pay
 description: A Dart/Flutter client SDK for Youcan pay APIs, which allows you to integrate Youcan pay payment gateway into your Dart/Flutter project.
-version: 0.8.1
+version: 0.8.2
 repository: https://github.com/anasfik/youcan_pay
 documentation: https://github.com/anasfik/youcan_pay/blob/main/README.md
 issue_tracker: https://github.com/anasfik/youcan_pay/issues

@@ -15,7 +15,7 @@ class YouCanPayEndpointBuilder {
       YouCanPayConstants.endpoints.apiTokenize,
       YouCanPayConstants.endpoints.authorize,
       YouCanPayConstants.endpoints.cashplus,
-      "/" + YouCanPayConstants.endpoints.pay,
+      "/${YouCanPayConstants.endpoints.pay}",
     ];
 
     final liveModeFullEnpointUrl = [baseUrl, ...endpoints].join("");
