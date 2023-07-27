@@ -8,7 +8,7 @@ void main() async {
   try {
     final res = await YouCanPay.instance.balanceHistory.history(token: token);
 
-    print(res.data);
+    print(res.data.map((e) => e.id));
   } on YouCanPayException catch (e) {
     print(e.message);
     print(e.statusCode);

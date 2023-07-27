@@ -417,5 +417,19 @@ You can tokenize an invoice by using the `tokenize` method:
     invoiceId: "INVOICE_ID",
   );
 
-  print(res.tokenId);
+  print(res.tokenID);
+```
+
+### Balance History
+
+#### List balance history
+
+To list all the balance history of a user, you can use the `balanceHistory` method:
+
+```dart
+  final res = await YouCanPay.instance.balanceHistory.history(
+    token: token,
+  );
+
+  print(res.data.map((e) => e.id).toList()); // The list of balance history items ids
 ```
