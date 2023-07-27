@@ -134,9 +134,9 @@ try {
 
 it is up to your case to handle the error as you want, you can also use the `statusCode` to handle the error.
 
-### Documentation
+## Documentation
 
-#### Payment
+### Payment
 
 #### Tokenize Payment
 
@@ -372,5 +372,5 @@ To get the recent recipients, you can use the `recentRecipients` method:
      token: token,
    );
 
-    print(res.data.map((e) => e.id).toList()); // The list of transfers ids
+    print(res.data.map((e) => e.id).toList()); // The list of recent recipients ids
 ```
