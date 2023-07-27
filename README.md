@@ -374,3 +374,48 @@ To get the recent recipients, you can use the `recentRecipients` method:
 
     print(res.data.map((e) => e.id).toList()); // The list of recent recipients ids
 ```
+
+### Invoices
+
+#### Create an invoice
+
+You can create a new invoice by using the `create` method:
+
+```dart
+  final res = await YouCanPay.instance.invoices.create(
+    token: token,
+    amount: 4000,
+    contactOption: 1,
+    name: "anas fikhi",
+    currency: "MAD",
+  );
+
+  print(res.id);
+  print(res.alias);
+  print(res.displayAmount);
+```
+
+#### List invoices
+
+To list all the invoices of a user, you can use the `invoices` method:
+
+```dart
+  final res = await YouCanPay.instance.invoices.invoices(
+    token: token,
+  );
+
+  print(res.data.map((e) => e.id).toList()); // The list of invoices ids
+```
+
+#### Tokenize an invoice
+
+You can tokenize an invoice by using the `tokenize` method:
+
+```dart
+  final res = await YouCanPay.instance.invoices.tokenize(
+    token: token,
+    invoiceId: "INVOICE_ID",
+  );
+
+  print(res.tokenId);
+```
