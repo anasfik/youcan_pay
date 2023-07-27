@@ -12,9 +12,6 @@ import '../../networking/endpoint.dart';
 
 final class YouCanPayPayments
     implements YouCanPayModule, YouCanPayPaymentsBase {
-  @override
-  List<String> get endpoints => [];
-
   static final YouCanPayPayments _instance = YouCanPayPayments._();
   static YouCanPayPayments get instance => _instance;
   YouCanPayPayments._();
