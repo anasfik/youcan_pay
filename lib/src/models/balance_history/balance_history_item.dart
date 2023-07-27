@@ -1,14 +1,30 @@
-
 import '../model.dart';
 
+/// {@template balance_history_item}
+///  Represents the response returned by the balance history API endpoint.
+/// {@endtemplate}
 class YouCanPayBlanceHistoryItem extends YouCanPayDataModel {
+  /// The unique identifier of the balance history item.
   final String id;
+
+  /// The unique identifier of the account.
   final String accountId;
+
+  /// The amount of the balance history item.
   final String displayAmount;
+
+  /// The type of the causer.
   final int causerType;
+
+  /// The unique identifier of the causer.
   final String causerId;
+
+  /// The type of the causer as text.
   final String causerTypeText;
 
+  ///  Creates a new instance of the [YouCanPayBlanceHistoryItem] class.
+  ///
+  /// {@macro balance_history_item}
   YouCanPayBlanceHistoryItem({
     required this.id,
     required this.accountId,
@@ -28,6 +44,7 @@ class YouCanPayBlanceHistoryItem extends YouCanPayDataModel {
         causerTypeText,
       ];
 
+  /// Creates a new instance of the [YouCanPayBlanceHistoryItem] class from a JSON [map].
   factory YouCanPayBlanceHistoryItem.fromMap(Map<String, dynamic> map) {
     return YouCanPayBlanceHistoryItem(
       id: map['id'] as String,
