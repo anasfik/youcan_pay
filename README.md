@@ -492,3 +492,4 @@ You are welcome to contribute to this project, just fork it and make a pull requ
 ## Issues
 
 If you find any issue, please report it [here](https://github.com/anasfik/youcan_pay/issues)
+

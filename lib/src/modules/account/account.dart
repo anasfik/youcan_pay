@@ -103,7 +103,7 @@ final class YouCanPayAccounts implements YouCanPayModule, YouCanPayAccountBase {
       customHeaders:
           HeadersBuilder().addAcceptJsonHeader().addTokenHeader(token).headers,
       onSuccess: (map) {
-        return LogoutResponse.fromMap(map);
+        return LogoutResponse();
       },
     );
   }

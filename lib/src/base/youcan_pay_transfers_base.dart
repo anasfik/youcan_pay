@@ -1,4 +1,3 @@
-import 'package:youcan_pay/src/modules/transfers/transfers.dart';
 
 import '../models/transfers/recent_recipients.dart';
 import '../models/transfers/transfer.dart';

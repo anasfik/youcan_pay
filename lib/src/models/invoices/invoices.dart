@@ -1,8 +1,6 @@
-import 'package:equatable/equatable.dart';
 import 'package:youcan_pay/src/models/invoices/invoice.dart';
 
 import 'package:youcan_pay/src/models/model.dart';
-import 'package:youcan_pay/src/models/transfers/transfer.dart';
 
 import '../transfers/transfers.dart';
 

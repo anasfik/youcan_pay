@@ -1,17 +1,20 @@
 import 'package:youcan_pay/src/models/model.dart';
 
+/// Represents the response returned by the logout API endpoint.
+///
+/// {@template logout_response}
+/// This model contains a boolean flag indicating whether the user was successfully logged out.
+/// {@endtemplate}
 class LogoutResponse extends YouCanPayDataModel {
+  /// Whether the user was successfully logged out.
   final bool isLoggedOut;
 
+  /// Creates a new instance of the [LogoutResponse] class.
+  ///
+  /// {@macro logout_response}
   LogoutResponse({
-    required this.isLoggedOut,
+    this.isLoggedOut = true,
   });
-
-  factory LogoutResponse.fromMap(Map<String, dynamic> map) {
-    return LogoutResponse(
-      isLoggedOut: map["isLoggedOut"],
-    );
-  }
 
   @override
   List<Object?> get props => [isLoggedOut];
