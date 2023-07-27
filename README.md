@@ -1,6 +1,6 @@
 # YouCan Pay Dart SDK
 
-This is Dart/Flutter SDK for [YouCan Pay APIs](https://youcanpay.com/docs), which helps you to integrate YouCan Pay into your Dart/Flutter project easily, and make your life more easier.
+This is Dart/Flutter SDK for [YouCan Pay APIs](https://youcanpay.com/docs/api), which helps you to communicate with YouCan Pay in your Dart/Flutter project easily, and make your life more easier.
 
 ## Key features
 
@@ -12,32 +12,32 @@ This is Dart/Flutter SDK for [YouCan Pay APIs](https://youcanpay.com/docs), whic
 
 ### Code progress (100%)
 
-- [x] [Payment](https://youcanpay.com/docs/api#payment)
-- [x] [Account](https://youcanpay.com/docs/api#account)
-- [x] [Currencies](https://youcanpay.com/docs/api#currencies)
-- [x] [Transfers](https://youcanpay.com/docs/api#transfers)
-- [x] [Invoices](https://youcanpay.com/docs/api#invoices)
-- [x] [Balance History](https://youcanpay.com/docs/api#balance_history)
-- [x] [Withdrawals](https://youcanpay.com/docs/api#withdrawals)
-- [x] [Deposit](https://youcanpay.com/docs/api#deposit)
+- [x] [Payment](#payment)
+- [x] [Account](#account)
+- [x] [Currencies](#currencies)
+- [x] [Transfers](#transfers)
+- [x] [Invoices](#invoices)
+- [x] [Balance History](#balance-history)
+- [x] [Withdrawals](#withdrawals)
+- [x] [Deposit](#deposit)
 
 
 ### Test progress (0%)
 
-- [-] [Account](https://youcanpay.com/docs/api#account)
-- [-] [Payment](https://youcanpay.com/docs/api#payment)
-- [-] [Currencies](https://youcanpay.com/docs/api#currencies)
-- [-] [Transfers](https://youcanpay.com/docs/api#transfers)
-- [-] [Invoices](https://youcanpay.com/docs/api#invoices)
-- [-] [Balance History](https://youcanpay.com/docs/api#balance_history)
-- [-] [Withdrawals](https://youcanpay.com/docs/api#withdrawals)
-- [-] [Deposit](https://youcanpay.com/docs/api#deposit)
+- [.] [Payment](#payment)
+- [.] [Account](#account)
+- [.] [Currencies](#currencies)
+- [.] [Transfers](#transfers)
+- [.] [Invoices](#invoices)
+- [.] [Balance History](#balance-history)
+- [.] [Withdrawals](#withdrawals)
+- [.] [Deposit](#deposit)
 
 ## Usage
 
 ### Quick Overview
 
-This package provides access to each module of the SDK via the one & only singleton of it, `YouCanPay.instance`.
+This package provides access to APIs via modules reflecting the base APIs documentation, each module of the SDK can be accessed via the one & only singleton of it, which is `YouCanPay.instance`, these are wat you can access via this singleton:
 
 ```dart
   YouCanPay.instance.account;
@@ -57,7 +57,7 @@ This package provides access to each module of the SDK via the one & only single
   YouCanPay.instance.withdrawals; 
 ```
 
-Each module contains a set Of methods that relates to it, as example to access the account's register API, you can use the following code:
+And each module will contain a set of methods that relates to it, as example to access the account's register API, you can use the following code:
 
 ```dart
 RegisterResponse registerResponse = await YouCanPay.instance.account.register(
@@ -71,11 +71,11 @@ RegisterResponse registerResponse = await YouCanPay.instance.account.register(
 
 ### Error handling
 
-All methods of this package will throw an exception if something went wrong, you can catch it and handle it as you want.
+All methods of this package will throw an exception if something went wrong from Youcan Pay ends, you can catch and handle them as you want.
 
-##### Example 1: 
+#### Way 1
 
-You can catch the exception and get the error message from it like this:
+You can trigger the `YouCanPayException` exception & catch it, then you will be able to use it's message.. like this:
 
 ```dart
 try {  
@@ -89,9 +89,9 @@ try {
   }
 ```
 
-##### Example 2
+#### Way 2
 
-The APIs exposes some error codes that you can expect to happen, with this package you have the option to catch them and handle them like this:
+The APIs exposes some [pre-defined error](https://youcanpay.com/docs/api#errors) codes that you can expect to happen while developing, with this package you have the option to execute an action based on each one, like this:
 
 ```dart
 try {  
@@ -132,7 +132,7 @@ try {
 
 ```
 
-it is up to your case to handle the error as you want, you can also use the `statusCode` to handle the error.
+It is up to your case to handle the error as you want. as a bonus, you can also use the `statusCode` to handle the error.
 
 ## Documentation
 
@@ -480,3 +480,15 @@ In order to tokenize a deposit, you can use hte `tokenize` method:
     print(res.tokenId);
 ```
 
+## Want to contribute?
+
+You are welcome to contribute to this project, just fork it and make a pull request, we will be happy to review it and merge it, these are some tasks that you can work on:
+
+- [] Find and correct mistakes in the documentation.
+- [] Handle unexpected behaviors if they happen.
+- [] Refactor, or add new funcionalities to the package.
+- [] Make the package more developer friendly.
+
+## Issues
+
+If you find any issue, please report it [here](https://github.com/anasfik/youcan_pay/issues)
