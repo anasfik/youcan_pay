@@ -9,7 +9,7 @@ void main() async {
   try {
     final res = await YouCanPay.instance.withdrawals.create(
       token: token,
-      paymentMethod: YouCanPayPaymentsMethod.bank_account,
+      paymentMethod: YouCanPayPaymentsMethod.bankAccount,
       amount: 500,
     );
 

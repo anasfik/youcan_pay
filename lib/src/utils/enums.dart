@@ -1,22 +1,30 @@
 enum YouCanPayBalanceHistorySortField {
   amount,
-  causer_type,
+  causerType;
+
+  String get snakeCasedName => camelToSnake(name);
 }
 
 enum YouCanPaySortOrder {
   asc,
-  desc,
+  desc;
+
+  String get snakeCasedName => camelToSnake(name);
 }
 
 enum YouCanPayTransfersSortField {
   amount,
-  created_at,
+  createdAt;
+
+  String get snakeCasedName => camelToSnake(name);
 }
 
 enum YouCanPayWithdrawalSortField {
   amount,
-  paid_at,
-  created_at,
+  paidAt,
+  createdAt;
+
+  String get snakeCasedName => camelToSnake(name);
 }
 
 enum YouCanPayInvoicesSortField {
@@ -24,14 +32,18 @@ enum YouCanPayInvoicesSortField {
   name,
   active,
   status,
-  due_by,
-  created_at,
+  dueBy,
+  createdAt;
+
+  String get snakeCasedName => camelToSnake(this.name);
 }
 
 enum YouCanPayNetworkingClientMethod {
   get,
   post,
-  put,
+  put;
+
+  String get snakeCasedName => camelToSnake(name);
 }
 
 enum YouCanPayStatsInterval {
@@ -41,6 +53,15 @@ enum YouCanPayStatsInterval {
 }
 
 enum YouCanPayPaymentsMethod {
-  bank_account,
-  cashplus,
+  bankAccount,
+  cashplus;
+
+  String get snakeCasedName => camelToSnake(name);
+}
+
+String camelToSnake(String name) {
+  return name
+      .replaceAllMapped(
+          RegExp(r'(?<!^)(?=[A-Z])'), (match) => '_${match.group(0)}')
+      .toLowerCase();
 }

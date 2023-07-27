@@ -30,7 +30,7 @@ final class YouCanPayWithdrawals
         YouCanPayConstants.endpoints.withdrawals,
       ]),
       body: {
-        "payment_method": paymentMethod.name,
+        "payment_method": paymentMethod.snakeCasedName,
         "amount": amount,
         if (withdrawalBankAccountId != null)
           "withdrawal_bank_account_id": withdrawalBankAccountId,
@@ -55,8 +55,8 @@ final class YouCanPayWithdrawals
         YouCanPayWithdrawalsPagination>(
       endpoint: YouCanPayEndpointBuilder()([
         YouCanPayConstants.endpoints.withdrawals,
-        "?sort_field=${sortField?.name}",
-        "&sort_order=${sortOrder?.name}",
+        "?sort_field=${sortField?.snakeCasedName}",
+        "&sort_order=${sortOrder?.snakeCasedName}",
       ]),
       body: {},
       method: YouCanPayNetworkingClientMethod.get,

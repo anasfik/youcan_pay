@@ -6,7 +6,7 @@ documentation: https://github.com/anasfik/youcan_pay/blob/main/README.md
 issue_tracker: https://github.com/anasfik/youcan_pay/issues
 
 environment:
-  sdk: ^3.0.0
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   equatable: ^2.0.5

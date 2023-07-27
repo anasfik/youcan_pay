@@ -17,7 +17,9 @@ final class YouCanPayCurrencies
   Type get type => runtimeType;
 
   @override
-  Future<ConversionRatesResponse> conversionRates({required String token}) {
+  Future<ConversionRatesResponse> conversionRates({
+    required String token,
+  }) {
     return YouCanPayNetworkingClient.sendFormRequestFromJson<
         ConversionRatesResponse>(
       endpoint: YouCanPayEndpointBuilder()([

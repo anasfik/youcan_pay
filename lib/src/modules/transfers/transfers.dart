@@ -54,8 +54,8 @@ final class YouCanPayTransfers
         YouCanPayTransfersPagination>(
       endpoint: YouCanPayEndpointBuilder()([
         YouCanPayConstants.endpoints.transfers,
-        "?sort_field=${sortField?.name}",
-        "&sort_order=${sortOrder?.name}",
+        "?sort_field=${sortField?.snakeCasedName}",
+        "&sort_order=${sortOrder?.snakeCasedName}",
       ]),
       body: {},
       method: YouCanPayNetworkingClientMethod.get,
@@ -68,7 +68,9 @@ final class YouCanPayTransfers
   }
 
   @override
-  Future<YouCanPayRecentRecipients> recentRecipients({required String token}) {
+  Future<YouCanPayRecentRecipients> recentRecipients({
+    required String token,
+  }) {
     return YouCanPayNetworkingClient.sendFormRequestFromJson<
         YouCanPayRecentRecipients>(
       endpoint: YouCanPayEndpointBuilder()([

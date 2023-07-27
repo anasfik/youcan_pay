@@ -29,8 +29,8 @@ final class YouCanPayBalanceHistory
         YouCanPayBalanceHistoryPagination>(
       endpoint: YouCanPayEndpointBuilder()([
         YouCanPayConstants.endpoints.balanceHistory,
-        "?sort_field=${sortField?.name}",
-        "&sort_order=${sortOrder?.name}",
+        "?sort_field=${sortField?.snakeCasedName}",
+        "&sort_order=${sortOrder?.snakeCasedName}",
       ]),
       body: {},
       method: YouCanPayNetworkingClientMethod.get,

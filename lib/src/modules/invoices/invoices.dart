@@ -67,8 +67,8 @@ final class YouCanPayInvoices
         YouCanPayInvoicesPagination>(
       endpoint: YouCanPayEndpointBuilder()([
         YouCanPayConstants.endpoints.transfers,
-        "?sort_field=${sortField?.name}",
-        "&sort_order=${sortOrder?.name}",
+        "?sort_field=${sortField?.snakeCasedName}",
+        "&sort_order=${sortOrder?.snakeCasedName}",
       ]),
       body: {},
       method: YouCanPayNetworkingClientMethod.get,
