@@ -1,4 +1,3 @@
-
 import '../models/transfers/recent_recipients.dart';
 import '../models/transfers/transfer.dart';
 import '../models/transfers/transfers.dart';
