@@ -256,7 +256,7 @@ In order to update a user's account informations, you can use the `updateAccount
 ```dart
 
    final res = await YouCanPay.instance.account.updateAccount(
-     token: token,
+     token: "TOKEN_OF_THE_USER",
      firstName: "anas fikhi",
      adress: "...",
    );
@@ -271,7 +271,7 @@ In order to update a user's password, you can use the `updatePassword` method:
 ```dart
 
    final res = await YouCanPay.instance.account.updatePassword(
-     token: token,
+     token: "TOKEN_OF_THE_USER",
      password: "newPassword",
    );
    
@@ -284,7 +284,7 @@ In order to get a user's account stats, you can use the `stats` method:
 
 ```dart
    final res = await YouCanPay.instance.account.stats(
-     token: token,
+     token: "TOKEN_OF_THE_USER",
      fromDate: DateTime.now().subtract(Duration(days: 5)),
      toDate: DateTime.now(),
      interval: YouCanPayStatsInterval.thisWeek,
@@ -300,7 +300,7 @@ To refresh a user's auth token, you can use the `refreshToken` method:
 
 ```dart
    final res = await YouCanPay.instance.account.refreshToken(
-     token: token,
+     token: "TOKEN_OF_THE_USER",
    );
    
    print(res.token); // The new token
@@ -312,7 +312,7 @@ To logout a user, you can use the `logout` method. This methpd will invalidate t
 
 ```dart
    final res = await YouCanPay.instance.account.logout(
-     token: token,
+     token: "TOKEN_OF_THE_USER",
    );
    
    print(res.message);
@@ -326,7 +326,7 @@ You can get the convertion rates of a currency by using the `convertionRates` me
 
 ```dart
    final res = await YouCanPay.instance.currencies.conversionRates(
-     token: token,
+     token: "TOKEN_OF_THE_USER",
    );
    
    print(res.baseCurrency);
@@ -343,7 +343,7 @@ You can create a new transfer by using the `create` method:
 
 ```dart
    final res = await YouCanPay.instance.transfers.create(
-     token: token,
+     token: "TOKEN_OF_THE_USER",
      amount: 1000,
      identifier: "work@gwhyyy.com",
    );
@@ -357,7 +357,7 @@ To list all the transfers of a user, you can use the `transfers` method:
 
 ```dart
    final res = await YouCanPay.instance.transfers.transfers(
-     token: token,
+     token: "TOKEN_OF_THE_USER",
    );
 
     print(res.data.map((e) => e.id).toList()); // The list of transfers ids
@@ -369,7 +369,7 @@ To get the recent recipients, you can use the `recentRecipients` method:
 
 ```dart
    final res = await YouCanPay.instance.transfers.recentRecipients(
-     token: token,
+     token: "TOKEN_OF_THE_USER",
    );
 
     print(res.data.map((e) => e.id).toList()); // The list of recent recipients ids
@@ -383,7 +383,7 @@ You can create a new invoice by using the `create` method:
 
 ```dart
   final res = await YouCanPay.instance.invoices.create(
-    token: token,
+    token: "TOKEN_OF_THE_USER",
     amount: 4000,
     contactOption: 1,
     name: "anas fikhi",
@@ -401,7 +401,7 @@ To list all the invoices of a user, you can use the `invoices` method:
 
 ```dart
   final res = await YouCanPay.instance.invoices.invoices(
-    token: token,
+    token: "TOKEN_OF_THE_USER",
   );
 
   print(res.data.map((e) => e.id).toList()); // The list of invoices ids
@@ -413,7 +413,7 @@ You can tokenize an invoice by using the `tokenize` method:
 
 ```dart
   final res = await YouCanPay.instance.invoices.tokenize(
-    token: token,
+    token: "TOKEN_OF_THE_USER",
     invoiceId: "INVOICE_ID",
   );
 
@@ -428,8 +428,55 @@ To list all the balance history of a user, you can use the `balanceHistory` meth
 
 ```dart
   final res = await YouCanPay.instance.balanceHistory.history(
-    token: token,
+    token: "TOKEN_OF_THE_USER",
   );
 
   print(res.data.map((e) => e.id).toList()); // The list of balance history items ids
 ```
+
+### Withdrawals
+
+#### Create a withdrawal
+
+You can create a new withdrawal by using the `create` method:
+
+```dart
+    final res = await YouCanPay.instance.withdrawals.create(
+      token: "TOKEN_OF_THE_USER",
+      paymentMethod: YouCanPayPaymentsMethod.bank_account,
+      amount: 500,
+    );
+
+    print(res.message);
+
+```
+
+#### List withdrawals
+
+To get a list of withdrawals, you can use the `withdrawals` method:
+
+```dart
+    final res = await YouCanPay.instance.withdrawals.withdrawals(
+      token: "TOKEN_OF_THE_USER",
+    );
+
+    print(res.data.map((e) => e.id).toList()); // The list of withdrawals ids
+```
+
+### Deposit
+
+#### Tokenize
+
+In order to tokenize a deposit, you can use hte `tokenize` method:
+
+```dart
+
+    final res = await YouCanPay.instance.deposits.tokenize(
+      token: "TOKEN_OF_THE_USER",
+      amount: 1000,
+      currency: 'MAD',
+    );
+
+    print(res.tokenId);
+```
+
