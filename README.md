@@ -317,3 +317,20 @@ To logout a user, you can use the `logout` method. This methpd will invalidate t
    
    print(res.message);
 ```
+
+### Currencies
+
+#### Conversion rates
+
+You can get the convertion rates of a currency by using the `convertionRates` method:
+
+```dart
+   final res = await YouCanPay.instance.currencies.conversionRates(
+     token: token,
+   );
+   
+   print(res.baseCurrency);
+   print(res.conversionRates["MAD"]);
+   print(res.conversionRates["USD"]);
+```
+
