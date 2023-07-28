@@ -9,7 +9,15 @@ import '../models/youcan_model.dart';
 import '../utils/enums.dart';
 import '../utils/exception_decider.dart';
 
+/// This class is responsible for sending requests to the server and returning the response in a dynamic way.
 abstract class YouCanPayNetworkingClient {
+  /// Sends an multi part (form) request to an [endpoint] with the given HTTP [method], it takes a normal JSON [body] that is handled internally to fit as a multi part body.
+  ///
+  /// This method includes internally the pre-defined headers from the `HeadersBuilder` class, unless `customHeaders` is specified, which then uses it instead.
+  ///
+  /// when a request is completed siccesfully with a response, the `onSuccess` method will be called with it.
+  ///
+  /// if the response status code is not an ok code (200-299), then it throws a `YouCanPayException` based on that status code.
   static Future<T> sendFormRequestFromJson<T extends YouCanPayDataModel>({
     required String endpoint,
     required Map<String, dynamic> body,
@@ -53,6 +61,13 @@ abstract class YouCanPayNetworkingClient {
     }
   }
 
+  /// Sends a request to an [endpoint] with the given HTTP [method], it uses the JSON [body].
+  ///
+  /// This method includes internally the pre-defined headers from the `HeadersBuilder` class, unless `customHeaders` is specified, which then uses it instead.
+  ///
+  /// when a request is completed siccesfully with a response, the `onSuccess` method will be called with it.
+  ///
+  /// if the response status code is not an ok code (200-299), then it throws a `YouCanPayException` based on that status code.
   static Future<T> sendJsonRequestFromJson<T extends YouCanPayDataModel>({
     required String endpoint,
     required Map<String, dynamic> body,
