@@ -1,5 +1,5 @@
 import 'package:youcan_pay/src/models/payments/cash_plus.dart';
-import 'package:youcan_pay/src/models/payments/pay.dart';
+import 'package:youcan_pay/src/models/payments/successful_pay.dart';
 import 'package:youcan_pay/src/models/payments/tokize_response.dart';
 import 'package:youcan_pay/src/networking/client.dart';
 import 'package:youcan_pay/src/utils/consts.dart';
@@ -7,7 +7,11 @@ import 'package:youcan_pay/src/utils/enums.dart';
 
 import '../../base/youcan_pay_module.dart';
 import '../../base/youcan_pay_payments_base.dart';
+import '../../models/payments/3ds_pay_response.dart';
 import '../../models/payments/expiry_date.dart';
+import '../../models/payments/pay_response.dart';
+import '../../models/payments/unknown_pay.dart';
+import '../../models/payments/unsuccessful_pay.dart';
 import '../../networking/endpoint.dart';
 
 final class YouCanPayPayments
@@ -69,7 +73,19 @@ final class YouCanPayPayments
       },
       method: YouCanPayNetworkingClientMethod.post,
       onSuccess: (map) {
-        return PayResponse.fromMap(map);
+        // ! the (map["is_success"] == true) is for the condition where it can be (null == true) which is false.
+        if (map.containsKey("is_success") && map["is_success"] == true) {
+          return SuccessfulPayResponse.fromMap(map);
+        } else if (map.containsKey("redirect_url")) {
+          return Verification3dsPayResponse.fromMap(map);
+
+          // Please read the previous comment for clarity.
+        } else if (map.containsKey("is_success") &&
+            map["is_success"] == false) {
+          return UnSuccessfulPayResponse.fromMap(map);
+        } else {
+          return UnknownPayResponse(decodedJsonResponse: map);
+        }
       },
     );
   }
@@ -118,7 +134,19 @@ final class YouCanPayPayments
       },
       method: YouCanPayNetworkingClientMethod.post,
       onSuccess: (map) {
-        return PayResponse.fromMap(map);
+        // ! the (map["is_success"] == true) is for the condition where it can be (null == true) which is false.
+        if (map.containsKey("is_success") && map["is_success"] == true) {
+          return SuccessfulPayResponse.fromMap(map);
+        } else if (map.containsKey("redirect_url")) {
+          return Verification3dsPayResponse.fromMap(map);
+
+          // Please read the previous comment for clarity.
+        } else if (map.containsKey("is_success") &&
+            map["is_success"] == false) {
+          return UnSuccessfulPayResponse.fromMap(map);
+        } else {
+          return UnknownPayResponse(decodedJsonResponse: map);
+        }
       },
     );
   }

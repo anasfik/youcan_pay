@@ -1,6 +1,7 @@
 import '../models/payments/cash_plus.dart';
 import '../models/payments/expiry_date.dart';
-import '../models/payments/pay.dart';
+import '../models/payments/pay_response.dart';
+import '../models/payments/successful_pay.dart';
 import '../models/payments/tokize_response.dart';
 
 abstract interface class YouCanPayPaymentsBase {
