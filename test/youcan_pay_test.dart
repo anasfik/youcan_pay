@@ -13,6 +13,7 @@ import 'package:youcan_pay/src/modules/payments/payments.dart';
 import 'package:youcan_pay/src/modules/transfers/transfers.dart';
 import 'package:youcan_pay/src/modules/withdrawals/withdrawals.dart';
 import 'package:youcan_pay/src/networking/endpoint.dart';
+import 'package:youcan_pay/src/networking/headers.dart';
 import 'package:youcan_pay/src/utils/consts.dart';
 import 'package:youcan_pay/youcan_pay.dart';
 
@@ -143,6 +144,18 @@ void main() async {
     });
   });
 
+  group("Headers Builder Test Group", () {
+    test("builder", () {
+      expect(HeadersBuilder().headers, isEmpty);
+      expect(HeadersBuilder().addAcceptJsonHeader().headers, isNotEmpty);
+      expect(
+          HeadersBuilder()
+              .addAcceptJsonHeader()
+              .addTokenHeader('tokenValue')
+              .headers,
+          contains("Authorization"));
+    });
+  });
   group("Account Test Group", () {
     test("Account Config", () async {
       final accountConfig = await YouCanPay.instance.account.accounfConfig(
