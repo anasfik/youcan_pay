@@ -179,4 +179,14 @@ void main() {
       // !
     });
   });
+  group("balance History Test Group", () {
+    test("balance history", () async {
+      final balanceHistory = await YouCanPay.instance.balanceHistory.history(
+        token: authUserToken,
+      );
+
+      expect(balanceHistory, isA<YouCanPayBalanceHistoryPagination>());
+      // !
+    });
+  });
 }
