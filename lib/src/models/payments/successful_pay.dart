@@ -1,13 +1,10 @@
-import '../model.dart';
+import '../youcan_model.dart';
 import 'pay_response.dart';
 
 /// {@template pay_response}
 ///  Represents the response returned by the pay API endpoint.
 /// {@endtemplate}
 class SuccessfulPayResponse extends PayResponse {
-  /// Weither the pay is success or not.
-  final bool isSuccess;
-
   /// The code of the pay.
   final String code;
 
@@ -24,7 +21,6 @@ class SuccessfulPayResponse extends PayResponse {
   ///
   /// {@macro pay_response}
   SuccessfulPayResponse({
-    required this.isSuccess,
     required this.code,
     required this.message,
     required this.transactionId,
@@ -33,7 +29,6 @@ class SuccessfulPayResponse extends PayResponse {
 
   @override
   List<Object?> get props => [
-        isSuccess,
         code,
         message,
         transactionId,
@@ -43,7 +38,6 @@ class SuccessfulPayResponse extends PayResponse {
   /// Creates a new instance of the [SuccessfulPayResponse] class from a JSON [map].
   static SuccessfulPayResponse fromMap(Map<String, dynamic> map) {
     return SuccessfulPayResponse(
-      isSuccess: map['is_success'] as bool,
       code: map['code'] as String,
       message: map['message'] as String,
       transactionId: map['transaction_id'] as String,

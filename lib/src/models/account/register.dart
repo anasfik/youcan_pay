@@ -1,4 +1,4 @@
-import '../model.dart';
+import '../youcan_model.dart';
 
 /// {@template register_response}
 /// A model class representing the response of a registration request.

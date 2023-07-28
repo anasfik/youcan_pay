@@ -1,6 +1,6 @@
 import 'package:youcan_pay/src/models/invoices/invoice.dart';
 
-import 'package:youcan_pay/src/models/model.dart';
+import 'package:youcan_pay/src/models/youcan_model.dart';
 
 import '../transfers/transfers.dart';
 

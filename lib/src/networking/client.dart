@@ -5,7 +5,7 @@ import 'package:youcan_pay/src/networking/headers.dart';
 import 'package:youcan_pay/src/utils/consts.dart';
 import 'package:youcan_pay/src/utils/extension.dart';
 
-import '../models/model.dart';
+import '../models/youcan_model.dart';
 import '../utils/enums.dart';
 import '../utils/exception_decider.dart';
 

@@ -1,4 +1,4 @@
-import '../model.dart';
+import '../youcan_model.dart';
 
 /// {@template balance_history_item}
 ///  Represents the response returned by the balance history API endpoint.

@@ -1,4 +1,4 @@
-import '../model.dart';
+import '../youcan_model.dart';
 
 class YouCanPayTransceiver extends YouCanPayDataModel {
   /// The unique identifier of the transceiver.

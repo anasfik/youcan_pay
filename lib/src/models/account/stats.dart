@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../model.dart';
+import '../youcan_model.dart';
 
 /// {@template youcan_pay_stats_response}
 /// A class representing the response of a statistics query.

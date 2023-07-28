@@ -1,6 +1,6 @@
 import 'package:youcan_pay/src/models/transfers/transceiver.dart';
 
-import '../model.dart';
+import '../youcan_model.dart';
 
 /// {@template transfer}
 ///  Represents the response returned by the transfer API endpoint.

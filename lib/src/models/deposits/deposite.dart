@@ -1,4 +1,4 @@
-import '../model.dart';
+import '../youcan_model.dart';
 
 /// {@template deposit_response}
 /// Represents the response returned by the deposit API endpoint.

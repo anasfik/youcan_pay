@@ -1,4 +1,4 @@
-import '../model.dart';
+import '../youcan_model.dart';
 
 /// {@template withdrawal}
 /// Represents the response returned by the withdrawal API endpoint.

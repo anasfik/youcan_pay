@@ -1,4 +1,4 @@
-import 'package:youcan_pay/src/models/model.dart';
+import 'package:youcan_pay/src/models/youcan_model.dart';
 
 /// {@template youcanpay_account_config}
 /// Youcan Pay account config model.

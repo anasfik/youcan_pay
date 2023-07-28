@@ -1,6 +1,6 @@
 import 'package:youcan_pay/src/models/balance_history/balance_history_item.dart';
 
-import 'package:youcan_pay/src/models/model.dart';
+import 'package:youcan_pay/src/models/youcan_model.dart';
 
 import '../transfers/transfers.dart';
 

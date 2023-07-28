@@ -1,4 +1,4 @@
-import '../model.dart';
+import '../youcan_model.dart';
 
 /// {@template youcan_pay_user_informations}
 ///  A class representing the user informations.

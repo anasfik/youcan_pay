@@ -1,4 +1,4 @@
-import '../model.dart';
+import '../youcan_model.dart';
 
 /// {@template invoice}
 /// Represents the response returned by the invoice API endpoint.

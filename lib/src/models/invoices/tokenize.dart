@@ -1,4 +1,4 @@
-import 'package:youcan_pay/src/models/model.dart';
+import 'package:youcan_pay/src/models/youcan_model.dart';
 
 /// {@template invoice_tokenization}
 ///  Represents the response returned by the invoice tokenization API endpoint.

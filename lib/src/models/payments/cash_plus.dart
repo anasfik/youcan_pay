@@ -1,4 +1,4 @@
-import '../model.dart';
+import '../youcan_model.dart';
 
 /// {@template cash_plus_response}
 ///   Represents the response returned by the cash plus API endpoint.
