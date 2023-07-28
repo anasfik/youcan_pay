@@ -144,6 +144,18 @@ void main() async {
     });
   });
 
+  group("Enums Test Group", () {
+    test("enum case conversion", () {
+      final generalExample = camelToSnake("myNameIsAnas");
+      expect(generalExample, "my_name_is_anas");
+
+      final enumValue1 = YouCanPayBalanceHistorySortField.causerType;
+      expect(enumValue1.snakeCasedName, "causer_type");
+
+      final enumValue2 = YouCanPayTransfersSortField.createdAt;
+      expect(enumValue2.snakeCasedName, "created_at");
+    });
+  });
   group("Headers Builder Test Group", () {
     test("builder", () {
       expect(HeadersBuilder().headers, isEmpty);
