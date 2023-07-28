@@ -19,6 +19,7 @@ void main() async {
   final email = "example$random@gmail.com";
   final phone = "+2126$random";
   final password = "12345678";
+
   try {
     final res = await YouCanPay.instance.account.register(
       email: email,
