@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.3
+
+- Exposed handling of different payment responses (success, failure, 3ds etc.)
+- More docs.
+
 ## 0.8.2
 
 - Exposed more APIs.

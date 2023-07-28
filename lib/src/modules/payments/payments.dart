@@ -7,7 +7,7 @@ import 'package:youcan_pay/src/utils/enums.dart';
 
 import '../../base/youcan_pay_module.dart';
 import '../../base/youcan_pay_payments_base.dart';
-import '../../models/payments/3ds_pay_response.dart';
+import '../../models/payments/verification_3ds_pay_response.dart';
 import '../../models/payments/expiry_date.dart';
 import '../../models/payments/pay_response.dart';
 import '../../models/payments/unknown_pay.dart';

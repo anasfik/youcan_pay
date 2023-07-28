@@ -1,4 +1,4 @@
-export '3ds_pay_response.dart';
+export 'verification_3ds_pay_response.dart';
 export 'cash_plus.dart';
 export 'expiry_date.dart';
 export 'pay_response.dart';
