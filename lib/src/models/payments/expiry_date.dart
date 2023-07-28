@@ -20,6 +20,12 @@ class YouCanPayExpireDate extends Equatable {
     assert(month <= 12 && year.toString().length <= 4);
   }
 
+  factory YouCanPayExpireDate.fromDateTime(DateTime dateTime) {
+    return YouCanPayExpireDate(
+      month: dateTime.month,
+      year: int.parse(dateTime.year.toString().substring(2)),
+    );
+  }
   @override
   List<Object?> get props => [year, month];
 

@@ -1,10 +1,4 @@
-import 'package:youcan_pay/src/exceptions/exception.dart';
-import 'package:youcan_pay/src/models/payments/3ds_pay_response.dart';
-import 'package:youcan_pay/src/models/payments/expiry_date.dart';
-import 'package:youcan_pay/src/models/payments/successful_pay.dart';
-import 'package:youcan_pay/src/models/payments/unknown_pay.dart';
-import 'package:youcan_pay/src/models/payments/unsuccessful_pay.dart';
-import 'package:youcan_pay/src/youcan_pay.dart';
+import 'package:youcan_pay/youcan_pay.dart';
 
 void main() async {
   YouCanPay.instance.isSandbox = true;

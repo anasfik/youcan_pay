@@ -1,7 +1,6 @@
 import 'dart:math';
 
-import 'package:youcan_pay/src/exceptions/exception.dart';
-import 'package:youcan_pay/src/youcan_pay.dart';
+import 'package:youcan_pay/youcan_pay.dart';
 
 void main() async {
   final random = Random().nextInt(99999999);

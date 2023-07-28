@@ -1,4 +1,3 @@
-import '../youcan_model.dart';
 import 'pay_response.dart';
 
 /// {@template pay_response}
