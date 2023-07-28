@@ -216,8 +216,20 @@ This will process a payment using a authorization operation. This is faster than
       expireDate: YouCanPayExpireDate(month: 10, year: 24),
     );
 
-    print(res.message); // ...
-    print(res.transactionId); // ...
+    if (payResponse is SuccessfulPayResponse) {
+      print("success payment");
+      print(payResponse.transactionId);
+      print(payResponse.message);
+      print(payResponse.orderId);
+    } else if (payResponse is Verification3dsPayResponse) {
+      print("3ds verification payment");
+      print(payResponse.redirectUrl);
+      print(payResponse.returnUrl);
+      print(payResponse.transactionId);
+    } else if (payResponse is UnknownPayResponse) {
+      print("unknown payment");
+      print(payResponse.decodedJsonResponse);
+    }
 ```
 
 ### Account
