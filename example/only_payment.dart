@@ -40,10 +40,6 @@ void main() async {
       print(payResponse.redirectUrl);
       print(payResponse.returnUrl);
       print(payResponse.transactionId);
-    } else if (payResponse is UnSuccessfulPayResponse) {
-      print("unsuccessful payment");
-      print(payResponse.code);
-      print(payResponse.message);
     } else if (payResponse is UnknownPayResponse) {
       print("unknown payment");
       print(payResponse.decodedJsonResponse);

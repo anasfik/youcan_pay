@@ -169,7 +169,12 @@ This will process the payment using CashPlus Gateway
 
 #### Card Gateway Sale
 
-This will process a payment using a sale operation. currently, the package supports only direct payments that are authorized and don't required 3ds authorization.
+This will process the payment. However, based on the status of the payment, the response will be different and so you will o check & handle each case:
+
+- if the payment is successful, you will get a `SuccessfulPayResponse` object.
+- if the payment requires a 3ds verification, you will get a `Verification3dsPayResponse` object.
+- if the payment is unsuccessful (as example if the card has no funds), an `YouCanPayUnprocessableEntityException` exception will be throws, check [Error handling](#error-handling) for more details.
+- if in any case the response is not expected, you will get an `UnknownPayResponse` object with the decoed json response.
 
 ```dart
     final res = await YouCanPay.instance.payments.pay(
@@ -181,8 +186,20 @@ This will process a payment using a sale operation. currently, the package suppo
       expireDate: YouCanPayExpireDate(month: 10, year: 24),
     );
 
-    print(res.message); // ...
-    print(res.transactionId); // ...
+    if (payResponse is SuccessfulPayResponse) {
+      print("success payment");
+      print(payResponse.transactionId);
+      print(payResponse.message);
+      print(payResponse.orderId);
+    } else if (payResponse is Verification3dsPayResponse) {
+      print("3ds verification payment");
+      print(payResponse.redirectUrl);
+      print(payResponse.returnUrl);
+      print(payResponse.transactionId);
+    } else if (payResponse is UnknownPayResponse) {
+      print("unknown payment");
+      print(payResponse.decodedJsonResponse);
+    }
 ```
 
 #### Card Gateway Authorization
