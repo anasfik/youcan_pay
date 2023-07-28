@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.4
+
+- Bug fixes.
+- Added unit tests to ensure current & future stability.
+
 ## 0.8.3
 
 - Exposed handling of different payment responses (success, failure, 3ds etc.)

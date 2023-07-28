@@ -9,7 +9,6 @@ This is Dart/Flutter SDK for [YouCan Pay APIs](https://youcanpay.com/docs/api), 
 - Supports all the API endpoints.
 - Configure once, use everywhere.
 
-
 ### Code progress (100%)
 
 - [x] [Payment](#payment)
@@ -21,17 +20,16 @@ This is Dart/Flutter SDK for [YouCan Pay APIs](https://youcanpay.com/docs/api), 
 - [x] [Withdrawals](#withdrawals)
 - [x] [Deposit](#deposit)
 
-
 ### Test progress (0%)
 
 - [.] [Payment](#payment)
-- [.] [Account](#account)
-- [.] [Currencies](#currencies)
-- [.] [Transfers](#transfers)
-- [.] [Invoices](#invoices)
-- [.] [Balance History](#balance-history)
-- [.] [Withdrawals](#withdrawals)
-- [.] [Deposit](#deposit)
+- [x] [Account](#account)
+- [x] [Currencies](#currencies)
+- [x] [Transfers](#transfers)
+- [x] [Invoices](#invoices)
+- [x] [Balance History](#balance-history)
+- [x] [Withdrawals](#withdrawals)
+- [x] [Deposit](#deposit)
 
 ## Usage
 
