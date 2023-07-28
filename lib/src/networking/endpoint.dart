@@ -2,7 +2,11 @@ import 'package:youcan_pay/src/youcan_pay.dart';
 
 import '../utils/consts.dart';
 
+///{@template endpoint_builder}
+/// Builds a full API endpoint url based on the given [endpoints].
+/// {@endtemplate}
 class YouCanPayEndpointBuilder {
+  /// {@macro endpoint_builder}
   String call(List<String> endpoints) {
     final baseUrl = YouCanPayConstants.baseUrl;
     final sandboxBaseUrl = YouCanPayConstants.sandboxBaseUrl;
