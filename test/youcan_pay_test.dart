@@ -12,17 +12,19 @@ import 'package:youcan_pay/src/modules/invoices/invoices.dart';
 import 'package:youcan_pay/src/modules/payments/payments.dart';
 import 'package:youcan_pay/src/modules/transfers/transfers.dart';
 import 'package:youcan_pay/src/modules/withdrawals/withdrawals.dart';
+import 'package:youcan_pay/src/networking/endpoint.dart';
 import 'package:youcan_pay/src/utils/consts.dart';
 import 'package:youcan_pay/youcan_pay.dart';
 
 import 'vars.dart';
 
-void main() {
+void main() async {
   final random = Random().nextInt(99999999);
 
   final email = "example$random@gmail.com";
   final phone = "+2126$random";
   final password = "12345678";
+  final newPasswordToUpdateWithLater = "MyNewPassword159";
   late String authUserToken;
 
   group('YouCanPay', () {
@@ -84,6 +86,63 @@ void main() {
     });
   });
 
+  group("Endpoints builder Test Group", () {
+    test("builder", () {
+      final builder = YouCanPayEndpointBuilder();
+
+      expect(YouCanPay.instance.isSandbox, false);
+
+      expect(builder([]), "https://youcanpay.com/api");
+
+      expect(
+        builder([YouCanPayConstants.endpoints.tokenize]),
+        "https://youcanpay.com/api/tokenize",
+      );
+
+      expect(
+        builder([
+          YouCanPayConstants.endpoints.account,
+          YouCanPayConstants.endpoints.login,
+        ]),
+        "https://youcanpay.com/api/account/login",
+      );
+
+      expect(
+        builder([YouCanPayConstants.endpoints.pay]),
+        "https://youcanpay.com/api/pay",
+      );
+
+      YouCanPay.instance.isSandbox = true;
+
+      expect(YouCanPay.instance.isSandbox, true);
+
+      expect(builder([]), "https://youcanpay.com/api");
+
+      expect(
+        builder([YouCanPayConstants.endpoints.account]),
+        "https://youcanpay.com/api/account",
+      );
+
+      expect(
+        builder([YouCanPayConstants.endpoints.pay]),
+        "https://youcanpay.com/sandbox/api/pay",
+      );
+
+      expect(
+        builder([YouCanPayConstants.endpoints.tokenize]),
+        "https://youcanpay.com/sandbox/api/tokenize",
+      );
+
+      expect(
+        builder([
+          YouCanPayConstants.endpoints.invoices,
+          YouCanPayConstants.endpoints.tokenize,
+        ]),
+        "https://youcanpay.com/api/invoices/tokenize",
+      );
+    });
+  });
+
   group("Account Test Group", () {
     test("Account Config", () async {
       final accountConfig = await YouCanPay.instance.account.accounfConfig(
@@ -141,7 +200,7 @@ void main() {
       final userInfo = await YouCanPay.instance.account.updatePassword(
         token: authUserToken,
         currentPassword: password,
-        newPassword: "123456789",
+        newPassword: newPasswordToUpdateWithLater,
       );
 
       expect(userInfo, isA<RegisterResponse>());
@@ -177,6 +236,19 @@ void main() {
 
       expect(logoutResponse, isA<LogoutResponse>());
       // !
+
+      // Since we logged out, the token is no longer valid, so we will need to login again.
+      // This won't be a test.
+      try {
+        final loginRes = await YouCanPay.instance.account.login(
+          emailOrPhone: email,
+          password: newPasswordToUpdateWithLater,
+        );
+
+        authUserToken = loginRes.token;
+      } on YouCanPayException catch (e) {
+        rethrow;
+      }
     });
   });
   group("balance History Test Group", () {
@@ -186,6 +258,104 @@ void main() {
       );
 
       expect(balanceHistory, isA<YouCanPayBalanceHistoryPagination>());
+      // !
+    });
+  });
+  group("Currencies Test Group", () {
+    test("Conversion rates", () async {
+      final currencies = await YouCanPay.instance.currencies.conversionRates(
+        token: authUserToken,
+      );
+
+      expect(currencies, isA<ConversionRatesResponse>());
+      // !
+    });
+  });
+  group("Deposits Test Group", () {
+    test("tokenize", () async {
+      final tokenize = await YouCanPay.instance.deposits.tokenize(
+        token: authUserToken,
+        amount: 1000,
+        currency: 'MAD',
+      );
+
+      expect(tokenize, isA<DepositResponse>());
+      // !
+    });
+  });
+  group("Transfers Test Group", () {
+    test("Create", () async {
+      final transfer = await YouCanPay.instance.transfers.create(
+        token: authUserToken,
+        amount: 1500,
+        identifier: "ffikhi.aanas@gmail.com",
+      );
+
+      expect(transfer, isA<YouCanPayTransfer>());
+      // !
+    });
+
+    test("Transfers List", () async {
+      final transfers = await YouCanPay.instance.transfers.transfers(
+        token: authUserToken,
+      );
+
+      expect(transfers, isA<YouCanPayTransfersPagination>());
+      // !
+    });
+
+    test("Recent Recipients", () async {
+      final recentRecipients =
+          await YouCanPay.instance.transfers.recentRecipients(
+        token: authUserToken,
+      );
+
+      expect(recentRecipients, isA<YouCanPayRecentRecipients>());
+      // !
+    });
+  });
+  group("Invoices Test Group", () {
+    test("Create", () async {
+      final invoice = await YouCanPay.instance.invoices.create(
+        token: authUserToken,
+        amount: 1500,
+        name: "some name",
+        currency: "MAD",
+        contactOption: 1,
+      );
+
+      expect(invoice, isA<YouCanPayInvoice>());
+      // !
+    });
+
+    test("Invoices List", () async {
+      final invoices = await YouCanPay.instance.invoices.invoices(
+        token: authUserToken,
+      );
+
+      expect(invoices, isA<YouCanPayInvoicesPagination>());
+      // !
+    });
+  });
+
+  group("Withdrawal Test Group", () {
+    test("Create", () async {
+      final withdrawal = await YouCanPay.instance.withdrawals.create(
+        token: authUserToken,
+        amount: 1500,
+        paymentMethod: YouCanPayPaymentsMethod.bankAccount,
+      );
+
+      expect(withdrawal, isA<WithdrawalResponse>());
+      // !
+    });
+
+    test("Withdrawals List", () async {
+      final withdrawals = await YouCanPay.instance.withdrawals.withdrawals(
+        token: authUserToken,
+      );
+
+      expect(withdrawals, isA<YouCanPayWithdrawalsPagination>());
       // !
     });
   });
