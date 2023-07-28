@@ -3,7 +3,6 @@
 import 'dart:math';
 
 import 'package:test/test.dart';
-import 'package:youcan_pay/src/base/youcan_pay_account_base.dart';
 import 'package:youcan_pay/src/modules/account/account.dart';
 import 'package:youcan_pay/src/modules/balance_history/balance_history.dart';
 import 'package:youcan_pay/src/modules/currencies/currencies.dart';
@@ -271,7 +270,7 @@ void main() async {
         );
 
         authUserToken = loginRes.token;
-      } on YouCanPayException catch (e) {
+      } on YouCanPayException {
         rethrow;
       }
     });
