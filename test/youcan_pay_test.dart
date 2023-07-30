@@ -383,4 +383,80 @@ void main() async {
       // !
     });
   });
+  group("Payments Test Group", () {
+    YouCanPay.instance.isSandbox = true;
+
+    late String paymentToken;
+
+    test('Tokenize', () async {
+      final tokenizationResponse = await YouCanPay.instance.payments.tokenize(
+        amount: 15000,
+        currency: "MAD",
+        priKey: sandboxPriKey,
+        orderId: DateTime.now().toIso8601String(),
+      );
+
+      expect(tokenizationResponse, isA<TokenizeResponse>());
+      paymentToken = tokenizationResponse.token;
+    });
+
+    test("Successful Pay", () async {
+      final paymentRes = await YouCanPay.instance.payments.pay(
+        pubKey: sandboxPubKey,
+        tokenId: paymentToken,
+        creditCard: 4242424242424242,
+        cardHolderName: "name here",
+        cvv: 112,
+        expireDate: YouCanPayExpireDate(month: 12, year: 24),
+      );
+
+      expect(paymentRes, isA<SuccessfulPayResponse>());
+    });
+
+    test("Unsuccessful Pay", () async {
+      try {
+        final paymentRes = await YouCanPay.instance.payments.pay(
+          pubKey: sandboxPubKey,
+          tokenId: paymentToken,
+          creditCard: 0000000000000000,
+          cardHolderName: "name here",
+          cvv: 112,
+          expireDate: YouCanPayExpireDate(month: 12, year: 24),
+        );
+
+        throw Exception(
+          "This should never get here, since we have wrong/unprocessable data",
+        );
+      } on YouCanPayException catch (e) {
+        // When the exception of catched, this mean that the test passes, and so continue
+      }
+    });
+
+    test("3ds Verification Pay", () async {
+      late String secureVerifyPayToken;
+
+      try {
+        final tokenizationResponse = await YouCanPay.instance.payments.tokenize(
+          amount: 15000,
+          currency: "MAD",
+          priKey: sandboxPriKey,
+          orderId: DateTime.now().toIso8601String(),
+        );
+        secureVerifyPayToken = tokenizationResponse.token;
+      } catch (e) {
+        rethrow;
+      }
+
+      final paymentRes = await YouCanPay.instance.payments.pay(
+        pubKey: sandboxPubKey,
+        tokenId: secureVerifyPayToken,
+        creditCard: 4000000000003220,
+        cardHolderName: "name here",
+        cvv: 112,
+        expireDate: YouCanPayExpireDate(month: 12, year: 24),
+      );
+
+      expect(paymentRes, isA<Verification3dsPayResponse>());
+    });
+  });
 }
