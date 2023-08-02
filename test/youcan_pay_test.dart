@@ -418,7 +418,7 @@ void main() async {
 
     test("Unsuccessful Pay", () async {
       try {
-        final paymentRes = await YouCanPay.instance.payments.pay(
+        await YouCanPay.instance.payments.pay(
           pubKey: sandboxPubKey,
           tokenId: paymentToken,
           creditCard: 0000000000000000,
@@ -430,7 +430,7 @@ void main() async {
         throw Exception(
           "This should never get here, since we have wrong/unprocessable data",
         );
-      } on YouCanPayException catch (e) {
+      } on YouCanPayException {
         // When the exception of catched, this mean that the test passes, and so continue
       }
     });
