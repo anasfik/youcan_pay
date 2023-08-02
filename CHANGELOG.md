@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.5
+
+- Add of more tests.
+- Minor codebase changes. 
+
 ## 0.8.4
 
 - Bug fixes.
