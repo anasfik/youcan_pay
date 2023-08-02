@@ -1,3 +1,4 @@
+import '../flutter/flutter.dart';
 import '../modules/account/account.dart';
 import '../modules/balance_history/balance_history.dart';
 import '../modules/currencies/currencies.dart';
@@ -22,4 +23,5 @@ abstract interface class YouCanPayBase {
   YouCanPayBalanceHistory get balanceHistory;
   YouCanPayWithdrawals get withdrawals;
   YouCanPayDeposits get deposits;
+  YouCanPayFlutter get flutter;
 }

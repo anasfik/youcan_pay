@@ -16,6 +16,7 @@ import 'package:youcan_pay/src/modules/withdrawals/withdrawals.dart';
 import 'package:youcan_pay/src/utils/consts.dart';
 
 import 'base/youcan_pay_base.dart';
+import 'flutter/flutter.dart';
 
 final class YouCanPay implements YouCanPayBase {
   static final YouCanPay _instance = YouCanPay._();
@@ -49,6 +50,9 @@ final class YouCanPay implements YouCanPayBase {
 
   @override
   YouCanPayWithdrawals get withdrawals => YouCanPayWithdrawals.instance;
+
+  @override
+  YouCanPayFlutter get flutter => YouCanPayFlutter.instance;
 
   @override
   String get baseUrl => _baseUrl ?? YouCanPayConstants.baseUrl;
