@@ -1,4 +1,5 @@
 import 'package:youcan_pay/src/exceptions/exception.dart';
+import 'package:youcan_pay/src/exceptions/export.dart';
 import 'package:youcan_pay/src/exceptions/not_found.dart';
 import 'package:youcan_pay/src/exceptions/unauthorized.dart';
 import 'package:youcan_pay/src/exceptions/unprocessable_entity.dart';
@@ -35,7 +36,11 @@ class YouCanPayExceptionDecidedByStatusCode {
           message: message,
           statusCode: statusCode,
         );
-
+      case 500:
+        return YouCanPayServerErrorException(
+          message: message,
+          statusCode: statusCode,
+        );
       default:
         return UnknownYouCanPayException(
           message: message,

@@ -83,6 +83,9 @@ void main() async {
       final newSandboxValue = true;
       YouCanPay.instance.isSandbox = newSandboxValue;
       expect(YouCanPay.instance.isSandbox, equals(newSandboxValue));
+
+      YouCanPay.instance.isSandbox = !newSandboxValue;
+      expect(YouCanPay.instance.isSandbox, equals(!newSandboxValue));
     });
   });
 
@@ -458,5 +461,32 @@ void main() async {
 
       expect(paymentRes, isA<Verification3dsPayResponse>());
     });
+  });
+
+  test('cash plus', () async {
+    YouCanPay.instance.isSandbox = false;
+
+    late String cashPlusPaymentTokenId;
+
+    try {
+      final tokenizationResponse = await YouCanPay.instance.payments.tokenize(
+        amount: 15000,
+        currency: "MAD",
+        priKey: priKey,
+        orderId: DateTime.now().toIso8601String(),
+      );
+
+      cashPlusPaymentTokenId = tokenizationResponse.token;
+    } catch (e) {
+      rethrow;
+    }
+
+    final cashPlusRes = await YouCanPay.instance.payments.cashPlusInit(
+      pubKey: pubKey,
+      tokenId: cashPlusPaymentTokenId,
+    );
+
+    expect(cashPlusRes, isA<CashPlusResponse>());
+    expect(cashPlusRes.tokenId, isA<String>());
   });
 }
