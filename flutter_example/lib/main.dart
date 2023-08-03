@@ -29,8 +29,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     void _snackBar(String text) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Payment failed'),
+        SnackBar(
+          content: Text(text),
         ),
       );
     }
@@ -46,40 +46,40 @@ class HomePage extends StatelessWidget {
 
             try {
               final res = await YouCanPay.instance.payments.tokenize(
-                amount: 42000,
+                amount: 46846,
                 priKey: "pri_sandbox_9f410153-b941-47f5-9154-c1981",
                 currency: "MAD",
                 orderId: "46846",
               );
 
               token = res.token;
+
+              YouCanPay.instance.flutter.processPay(
+                context,
+                paymentToken: token,
+                pubKey: "pub_sandbox_10277a4b-96a0-4d1a-b632-d9886",
+                card: YouCanPayCard(
+                  cardHolderName: "anas",
+                  creditCard: 4000000000000077,
+                  cvv: 112,
+                  expireDate: YouCanPayExpireDate(month: 12, year: 2024),
+                ),
+                on3dsVerificationFailed: (res) {
+                  _snackBar(res.message);
+                },
+                onPaymentFailed: (exception, stacktrace) {
+                  _snackBar(exception.message);
+                },
+                onPaymentSuccessWithout3dsVerification: (res) {
+                  _snackBar(res.message);
+                },
+                onPaymentSuccessWith3dsVerification: (res) {
+                  _snackBar(res.transactionId);
+                },
+              );
             } catch (e) {
               print(e);
             }
-
-            YouCanPay.instance.flutter.processPay(
-              context,
-              paymentToken: token,
-              pubKey: "pub_sandbox_10277a4b-96a0-4d1a-b632-d9886",
-              card: YouCanPayCard(
-                cardHolderName: "anas",
-                creditCard: 4000000000003220,
-                cvv: 112,
-                expireDate: YouCanPayExpireDate(month: 12, year: 2024),
-              ),
-              on3dsVerificationFailed: (res) {
-                _snackBar(res.message);
-              },
-              onPaymentFailed: (exception, stacktrace) {
-                _snackBar(exception.message);
-              },
-              onPaymentSuccessWithout3dsVerification: (res) {
-                _snackBar(res.message);
-              },
-              onPaymentSuccessWith3dsVerification: (res) {
-                _snackBar(res.transactionId);
-              },
-            );
           },
           child: Text('Pay'),
         ),
