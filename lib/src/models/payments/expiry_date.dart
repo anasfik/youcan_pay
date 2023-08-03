@@ -13,17 +13,37 @@ class YouCanPayExpireDate extends Equatable {
   /// Creates a new instance of the [YouCanPayExpireDate] class.
   ///
   /// {@macro expire_date}
-  YouCanPayExpireDate({
+  YouCanPayExpireDate._({
     required this.month,
     required this.year,
+  });
+
+  factory YouCanPayExpireDate({
+    required int month,
+    required int year,
   }) {
-    assert(month <= 12 && year.toString().length <= 4);
+    int yearToUse = year;
+    final yearAsString = yearToUse.toString();
+
+    final isValidMonth = month <= 12;
+    final isValidYear = yearAsString.length == 4 || yearAsString.length == 2;
+
+    assert(isValidMonth && isValidYear, "Invalid expire date");
+
+    if (yearAsString.length == 4) {
+      yearToUse = int.parse(yearAsString.substring(2));
+    }
+
+    return YouCanPayExpireDate._(
+      month: month,
+      year: yearToUse,
+    );
   }
 
   factory YouCanPayExpireDate.fromDateTime(DateTime dateTime) {
     return YouCanPayExpireDate(
       month: dateTime.month,
-      year: int.parse(dateTime.year.toString().substring(2)),
+      year: dateTime.year,
     );
   }
   @override
