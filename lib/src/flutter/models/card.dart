@@ -28,28 +28,28 @@ class YouCanPayCard extends Equatable {
     required this.expireDate,
   });
 
-  factory YouCanPayCard.testingNo3dsSuccessCard([String cardHolderName = '']) {
+  factory YouCanPayCard.testingNo3dsSuccessCard([String? cardHolderName]) {
     return _baseTestCard(
       creditCard: 4242424242424242,
       cardHolderName: cardHolderName,
     );
   }
 
-  factory YouCanPayCard.testing3dsSuccessCard([String cardHolderName = '']) {
+  factory YouCanPayCard.testing3dsSuccessCard([String? cardHolderName]) {
     return _baseTestCard(
       creditCard: 4000000000003220,
       cardHolderName: cardHolderName,
     );
   }
 
-  factory YouCanPayCard.testing3dsRejectedCard([String cardHolderName = '']) {
+  factory YouCanPayCard.testing3dsRejectedCard([String? cardHolderName]) {
     return _baseTestCard(
       creditCard: 4000008400001629,
       cardHolderName: cardHolderName,
     );
   }
 
-  factory YouCanPayCard.testingNo3dsNoFundsCard([String cardHolderName = '']) {
+  factory YouCanPayCard.testingNo3dsNoFundsCard([String? cardHolderName]) {
     return _baseTestCard(
       creditCard: 4000000000000077,
       cardHolderName: cardHolderName,
@@ -58,11 +58,11 @@ class YouCanPayCard extends Equatable {
 
   static YouCanPayCard _baseTestCard({
     required int creditCard,
-    required String cardHolderName,
+    String? cardHolderName,
   }) {
     return YouCanPayCard(
       creditCard: creditCard,
-      cardHolderName: cardHolderName,
+      cardHolderName: cardHolderName ?? "John Doe",
       cvv: 112,
       expireDate: YouCanPayExpireDate(month: 12, year: 2024),
     );
