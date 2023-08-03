@@ -76,6 +76,9 @@ class HomePage extends StatelessWidget {
               onPaymentSuccessWithout3dsVerification: (res) {
                 _snackBar(res.message);
               },
+              onPaymentSuccessWith3dsVerification: (res) {
+                _snackBar(res.transactionId);
+              },
             );
           },
           child: Text('Pay'),
