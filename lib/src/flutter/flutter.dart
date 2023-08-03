@@ -20,8 +20,12 @@ final class YouCanPayFlutter implements YouCanPayFlutterBase {
     required YouCanPayCard card,
     void Function(YouCanPayException exception, dynamic stacktrace)?
         onPaymentFailed,
+    void Function(UnSuccessfulPayResponse unSuccessfulPayResponse)?
+        on3dsVerificationFailed,
     void Function(SuccessfulPayResponse successfulPayResponse)?
         onPaymentSuccessWithout3dsVerification,
+    void Function(SuccessfulPayResponse successfulPayResponse)?
+        onPaymentSuccessWith3dsVerification,
   }) {
     paymentFlowBuilder(
       context,
@@ -35,7 +39,12 @@ final class YouCanPayFlutter implements YouCanPayFlutterBase {
         showModalBottomSheet(
           context: context,
           builder: (context) {
-            return Verification3dsWebView(verification3dsPayResponse);
+            return Verification3dsWebView(
+              verification3dsPayResponse: verification3dsPayResponse,
+              on3dsVerificationFailed: on3dsVerificationFailed,
+              onPaymentSuccessWith3dsVerification:
+                  onPaymentSuccessWith3dsVerification,
+            );
           },
         );
       },

@@ -27,6 +27,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _snackBar(String text) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Payment failed'),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('YouCanPay Flutter Example'),
@@ -59,19 +67,14 @@ class HomePage extends StatelessWidget {
                 cvv: 112,
                 expireDate: YouCanPayExpireDate(month: 12, year: 2024),
               ),
+              on3dsVerificationFailed: (res) {
+                _snackBar(res.message);
+              },
               onPaymentFailed: (exception, stacktrace) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(exception.message),
-                  ),
-                );
+                _snackBar(exception.message);
               },
               onPaymentSuccessWithout3dsVerification: (res) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('${res.message}, ${res.transactionId}'),
-                  ),
-                );
+                _snackBar(res.message);
               },
             );
           },
