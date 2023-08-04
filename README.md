@@ -9,7 +9,7 @@ This is Dart/Flutter SDK for [YouCan Pay APIs](https://youcanpay.com/docs/api), 
 - Supports all the API endpoints.
 - Configure once, use everywhere.
 
-### Code progress (100 - x %)
+### Code progress (100)
 
 - [x] [Payment](#payment)
 - [x] [Account](#account)
@@ -19,7 +19,7 @@ This is Dart/Flutter SDK for [YouCan Pay APIs](https://youcanpay.com/docs/api), 
 - [x] [Balance History](#balance-history)
 - [x] [Withdrawals](#withdrawals)
 - [x] [Deposit](#deposit)
-- [_] Fully standalone Flutter integration
+- [x] Fully standalone Flutter integration
 
 ### Test progress (100%)
 
@@ -35,6 +35,8 @@ This is Dart/Flutter SDK for [YouCan Pay APIs](https://youcanpay.com/docs/api), 
 ## Usage
 
 ### Quick Overview
+
+#### Youcan Pay APIs 
 
 This package provides access to APIs via modules reflecting the base APIs documentation, each module of the SDK can be accessed via the one & only singleton of it, which is `YouCanPay.instance`, these are wat you can access via this singleton:
 
@@ -67,6 +69,50 @@ RegisterResponse registerResponse = await YouCanPay.instance.account.register(
    phone: "+212611223344",
 );
 ```
+
+#### Flutter Payment integration
+
+`YouCanPay.instance` offers now access to a `flutter` module via:
+
+```dart
+  YouCanPay.instance.flutter;
+```
+
+Which provides an opinionated standalone payment integration for flutter, which is fully configurable and ready to use, this is an example of processing a payment:
+
+```dart
+ YouCanPay.instance.flutter.processPay(
+     context,
+     paymentToken: "THE_TOKEN_OF_PAYMENT",
+     pubKey: "YOUR_PUBLIC_KEY",
+     card: YouCanPayCard(
+       cardHolderName: "Anas Fikhi",
+       creditCard: 4242424242424242,
+       cvv: 112,
+       expireDate: YouCanPayExpireDate(month: 12, year: 2024),
+     ),
+     on3dsVerificationFailed: (res) {
+       _snackBar(res.message);
+     },
+     onPaymentFailed: (exception, stacktrace) {
+       _snackBar(exception.message);
+     },
+     onPaymentSuccessWithout3dsVerification: (res) {
+       _snackBar(res.message);
+     },
+     onPaymentSuccessWith3dsVerification: (res) {
+       _snackBar(res.transactionId);
+     },
+  );
+```
+
+- `onPaymentSuccessWithout3dsVerification` will hbe called if a payment was processed successfully with ease directly after calling `processPay`. accurately, when the card don't require any 3ds verification.
+
+_ `onPaymentSuccessWith3dsVerification` will be called if a payment was processed successfully after the user verifies/authorize it in the 3ds verification web view.
+
+- `on3dsVerificationFailed` will be called if the user was prompted to verify/authorize the payment in the web view, but the operation failed. as example, if the user chooses to cancel the payment manually..
+
+- `onPaymentFailed` will be called if the payment had directly failed after calling `processPay`. as example, due to an invalid card information, invalid token, insufficient funds, bank rejection...
 
 ### Error handling
 
