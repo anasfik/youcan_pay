@@ -48,22 +48,21 @@ class _Verification3dsWebViewState extends State<Verification3dsWebView> {
 
   void _onUrlChangeToTriggerSuccessStatus(UrlChange urlChange) {
     final queryParameters = urlChange.queryParameters;
+
     final paymentSuccessStatus = queryParameters['success'];
 
     switch (paymentSuccessStatus) {
-      case "0":
-        final unSuccessRes = UnSuccessfulPayResponse.fromMap(queryParameters);
-        widget.on3dsVerificationFailed?.call(unSuccessRes);
-        break;
-
       case "1":
         final successRes = SuccessfulPayResponse.fromMap(queryParameters);
 
         widget.onPaymentSuccessWith3dsVerification?.call(successRes);
         break;
-      default:
+      case "0":
+        final unSuccessRes = UnSuccessfulPayResponse.fromMap(queryParameters);
+        widget.on3dsVerificationFailed?.call(unSuccessRes);
+        break;
 
-        /// Do nothing
+      default:
         break;
     }
   }

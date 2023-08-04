@@ -1,9 +1,14 @@
 # Changelog
 
+## 0.9.0
+
+- Implmentation of Flutter integration for payments
+- Improved developer experience
+
 ## 0.8.5
 
 - Add of more tests.
-- Minor codebase changes. 
+- Minor codebase changes.
 
 ## 0.8.4
 

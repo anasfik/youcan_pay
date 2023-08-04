@@ -58,12 +58,7 @@ class HomePage extends StatelessWidget {
                 context,
                 paymentToken: token,
                 pubKey: "pub_sandbox_10277a4b-96a0-4d1a-b632-d9886",
-                card: YouCanPayCard(
-                  cardHolderName: "anas",
-                  creditCard: 4000000000000077,
-                  cvv: 112,
-                  expireDate: YouCanPayExpireDate(month: 12, year: 2024),
-                ),
+                card: YouCanPayCard.testing3dsSuccessCard(),
                 on3dsVerificationFailed: (res) {
                   _snackBar(res.message);
                 },
