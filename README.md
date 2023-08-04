@@ -114,6 +114,20 @@ _ `onPaymentSuccessWith3dsVerification` will be called if a payment was processe
 
 - `onPaymentFailed` will be called if the payment had directly failed after calling `processPay`. as example, due to an invalid card information, invalid token, insufficient funds, bank rejection...
 
+<br>
+
+While tsting/developing, you may be willing to use [test cards](https://youcanpay.com/docs#testing_and_test_cards), right? you can access/use those card via `YouCanPayCard` factories:
+
+```dart
+  YouCanPayCard.testingNo3dsSuccessCard();
+  
+  YouCanPayCard.testing3dsSuccessCard();
+  
+  YouCanPayCard.testing3dsRejectedCard();
+  
+  YouCanPayCard.testingNo3dsNoFundsCard();
+```
+
 ### Error handling
 
 All methods of this package will throw an exception if something went wrong from Youcan Pay ends, you can catch and handle them as you want.
