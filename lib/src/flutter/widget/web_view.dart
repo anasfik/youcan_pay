@@ -13,10 +13,11 @@ class Verification3dsWebView extends StatefulWidget {
     required this.onPaymentSuccessWith3dsVerification,
   });
 
-  final void Function(UnSuccessfulPayResponse unSuccessfulPayResponse)?
-      on3dsVerificationFailed;
+  final void Function(BuildContext context,
+      UnSuccessfulPayResponse unSuccessfulPayResponse)? on3dsVerificationFailed;
 
-  final void Function(SuccessfulPayResponse successfulPayResponse)?
+  final void Function(
+          BuildContext context, SuccessfulPayResponse successfulPayResponse)?
       onPaymentSuccessWith3dsVerification;
 
   final Verification3dsPayResponse verification3dsPayResponse;
@@ -61,11 +62,11 @@ class _Verification3dsWebViewState extends State<Verification3dsWebView> {
       case "1":
         final successRes = SuccessfulPayResponse.fromMap(queryParameters);
 
-        widget.onPaymentSuccessWith3dsVerification?.call(successRes);
+        widget.onPaymentSuccessWith3dsVerification?.call(context, successRes);
         break;
       case "0":
         final unSuccessRes = UnSuccessfulPayResponse.fromMap(queryParameters);
-        widget.on3dsVerificationFailed?.call(unSuccessRes);
+        widget.on3dsVerificationFailed?.call(context, unSuccessRes);
         break;
 
       default:

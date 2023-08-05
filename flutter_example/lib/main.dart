@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
                 amount: 46846,
                 priKey: "pri_sandbox_9f410153-b941-47f5-9154-c1981",
                 currency: "MAD",
-                orderId: "46846",
+                orderId: "5000",
               );
 
               token = res.token;
@@ -59,8 +59,12 @@ class HomePage extends StatelessWidget {
                 paymentToken: token,
                 pubKey: "pub_sandbox_10277a4b-96a0-4d1a-b632-d9886",
                 card: YouCanPayCard.testing3dsSuccessCard(),
-                on3dsVerificationFailed: (res) {
+                on3dsVerificationFailed: (context, res) {
                   _snackBar(res.message);
+
+                  Future.delayed(Duration(seconds: 3), () {
+                    Navigator.pop(context);
+                  });
                 },
                 onPaymentFailed: (exception, stacktrace) {
                   _snackBar(exception.message);
@@ -68,8 +72,12 @@ class HomePage extends StatelessWidget {
                 onPaymentSuccessWithout3dsVerification: (res) {
                   _snackBar(res.message);
                 },
-                onPaymentSuccessWith3dsVerification: (res) {
+                onPaymentSuccessWith3dsVerification: (context, res) {
                   _snackBar(res.transactionId);
+
+                  Future.delayed(Duration(seconds: 3), () {
+                    Navigator.pop(context);
+                  });
                 },
               );
             } catch (e) {

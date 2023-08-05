@@ -12,6 +12,7 @@ final class YouCanPayFlutter implements YouCanPayFlutterBase {
 
   YouCanPayFlutter._();
 
+  @override
   void processPay(
     BuildContext context, {
     required String paymentToken,
@@ -19,11 +20,13 @@ final class YouCanPayFlutter implements YouCanPayFlutterBase {
     required YouCanPayCard card,
     void Function(YouCanPayException exception, dynamic stacktrace)?
         onPaymentFailed,
-    void Function(UnSuccessfulPayResponse unSuccessfulPayResponse)?
+    void Function(BuildContext context,
+            UnSuccessfulPayResponse unSuccessfulPayResponse)?
         on3dsVerificationFailed,
     void Function(SuccessfulPayResponse successfulPayResponse)?
         onPaymentSuccessWithout3dsVerification,
-    void Function(SuccessfulPayResponse successfulPayResponse)?
+    void Function(
+            BuildContext context, SuccessfulPayResponse successfulPayResponse)?
         onPaymentSuccessWith3dsVerification,
   }) {
     paymentFlowBuilder(
@@ -60,6 +63,8 @@ final class YouCanPayFlutter implements YouCanPayFlutterBase {
         onPaymentFailed,
     void Function(SuccessfulPayResponse successfulPayResponse)?
         onPaymentSuccessWithout3dsVerification,
+    void Function(SuccessfulPayResponse successfulPayResponse)?
+        onPaymentSuccessWith3dsVerification,
     void Function(Verification3dsPayResponse verification3dsPayResponse)?
         onPaymentRequiring3dsVerification,
   }) async {
