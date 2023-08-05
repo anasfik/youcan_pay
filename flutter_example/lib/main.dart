@@ -4,7 +4,7 @@ import 'package:youcan_pay/youcan_pay.dart';
 void main() {
   YouCanPay.instance.isSandbox = true;
 
-  runApp(App());
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
@@ -27,10 +27,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void _snackBar(String text) {
+    void _snackBar(String? text) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(text),
+          content: Text(text.toString()),
         ),
       );
     }
@@ -76,7 +76,7 @@ class HomePage extends StatelessWidget {
               print(e);
             }
           },
-          child: Text('Pay'),
+          child: const Text('Pay'),
         ),
       ),
     );

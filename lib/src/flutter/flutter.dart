@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'package:youcan_pay/src/modules/payments/payments.dart';
 import '../base/flutter/flutter.dart';
 import '../exceptions/export.dart';

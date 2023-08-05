@@ -27,6 +27,7 @@ class Verification3dsWebView extends StatefulWidget {
 
 class _Verification3dsWebViewState extends State<Verification3dsWebView> {
   WebViewController? webViewController;
+  String? lastOpenedUrl;
 
   @override
   void initState() {
@@ -51,6 +52,11 @@ class _Verification3dsWebViewState extends State<Verification3dsWebView> {
 
     final paymentSuccessStatus = queryParameters['success'];
 
+    if (paymentSuccessStatus == null || lastOpenedUrl == urlChange.url) {
+      return;
+    }
+
+    lastOpenedUrl = urlChange.url;
     switch (paymentSuccessStatus) {
       case "1":
         final successRes = SuccessfulPayResponse.fromMap(queryParameters);

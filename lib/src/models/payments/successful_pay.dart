@@ -8,7 +8,7 @@ class SuccessfulPayResponse extends PayResponse {
   final String code;
 
   /// The message of the pay.
-  final String message;
+  final String? message;
 
   /// The unique identifier of the transaction.
   final String transactionId;
@@ -38,7 +38,7 @@ class SuccessfulPayResponse extends PayResponse {
   static SuccessfulPayResponse fromMap(Map<String, dynamic> map) {
     return SuccessfulPayResponse(
       code: map['code'] as String,
-      message: map['message'] as String,
+      message: map['message'],
       transactionId: map['transaction_id'] as String,
       orderId: map['order_id'] as String,
     );
