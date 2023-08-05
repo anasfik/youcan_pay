@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0
+
+- Release of prod release of the package.
+- Medium changes in the SDK (not breaking changes).
+- More developer friendly.
+
 ## 0.9.1
 
 - Expose of `BuildContext` for web view 3ds based callbacks to have access to contextual elements such `Naviagtor`...
