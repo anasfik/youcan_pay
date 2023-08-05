@@ -21,7 +21,7 @@ This is Dart/Flutter SDK for [YouCan Pay APIs](https://youcanpay.com/docs/api), 
 - [x] [Deposit](#deposit)
 - [x] Fully standalone Flutter integration
 
-### Test progress (100%)
+### Test progress (100 - x%)
 
 - [x] [Payment](#payment)
 - [x] [Account](#account)
@@ -31,6 +31,7 @@ This is Dart/Flutter SDK for [YouCan Pay APIs](https://youcanpay.com/docs/api), 
 - [x] [Balance History](#balance-history)
 - [x] [Withdrawals](#withdrawals)
 - [x] [Deposit](#deposit)
+- [-] [Flutter](#flutter-payment-integration)
 
 ## Usage
 

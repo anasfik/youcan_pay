@@ -3,6 +3,7 @@ import 'package:youcan_pay/src/modules/payments/payments.dart';
 import '../base/flutter/flutter.dart';
 import '../exceptions/export.dart';
 import '../models/export.dart';
+import '../utils/typedefs.dart';
 import 'models/card.dart';
 import 'widget/web_view.dart';
 
@@ -18,15 +19,11 @@ final class YouCanPayFlutter implements YouCanPayFlutterBase {
     required String paymentToken,
     required String pubKey,
     required YouCanPayCard card,
-    void Function(YouCanPayException exception, dynamic stacktrace)?
-        onPaymentFailed,
-    void Function(BuildContext context,
-            UnSuccessfulPayResponse unSuccessfulPayResponse)?
-        on3dsVerificationFailed,
-    void Function(SuccessfulPayResponse successfulPayResponse)?
+    PaymentFailureHandler? onPaymentFailed,
+    Verification3dsFailedHandler? on3dsVerificationFailed,
+    PaymentSuccessWithout3dsVerificationHandler?
         onPaymentSuccessWithout3dsVerification,
-    void Function(
-            BuildContext context, SuccessfulPayResponse successfulPayResponse)?
+    PaymentSuccessWith3dsVerificationHandler?
         onPaymentSuccessWith3dsVerification,
   }) {
     paymentFlowBuilder(
@@ -59,14 +56,11 @@ final class YouCanPayFlutter implements YouCanPayFlutterBase {
     required String paymentToken,
     required String pubKey,
     required YouCanPayCard card,
-    void Function(YouCanPayException exception, dynamic stacktrace)?
-        onPaymentFailed,
-    void Function(SuccessfulPayResponse successfulPayResponse)?
+    PaymentFailureHandler? onPaymentFailed,
+    PaymentSuccessWithout3dsVerificationHandler?
         onPaymentSuccessWithout3dsVerification,
-    void Function(SuccessfulPayResponse successfulPayResponse)?
-        onPaymentSuccessWith3dsVerification,
-    void Function(Verification3dsPayResponse verification3dsPayResponse)?
-        onPaymentRequiring3dsVerification,
+    Verification3dsSuccessHandler? onPaymentSuccessWith3dsVerification,
+    PaymentRequiring3dsVerificationHandler? onPaymentRequiring3dsVerification,
   }) async {
     try {
       final payResponse = await YouCanPayPayments.instance.pay(

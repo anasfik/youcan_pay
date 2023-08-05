@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:youcan_pay/src/models/export.dart';
 import 'package:youcan_pay/src/utils/extension.dart';
+import 'package:youcan_pay/src/utils/typedefs.dart';
 
 import '../../../youcan_pay.dart';
 
@@ -13,11 +14,9 @@ class Verification3dsWebView extends StatefulWidget {
     required this.onPaymentSuccessWith3dsVerification,
   });
 
-  final void Function(BuildContext context,
-      UnSuccessfulPayResponse unSuccessfulPayResponse)? on3dsVerificationFailed;
+  final Verification3dsFailedHandler? on3dsVerificationFailed;
 
-  final void Function(
-          BuildContext context, SuccessfulPayResponse successfulPayResponse)?
+  final PaymentSuccessWith3dsVerificationHandler?
       onPaymentSuccessWith3dsVerification;
 
   final Verification3dsPayResponse verification3dsPayResponse;
