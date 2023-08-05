@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
                 on3dsVerificationFailed: (context, res) {
                   _snackBar(res.message);
 
-                  Future.delayed(Duration(seconds: 3), () {
+                  Future.delayed(const Duration(seconds: 3), () {
                     Navigator.pop(context);
                   });
                 },
@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
                 onPaymentSuccessWith3dsVerification: (context, res) {
                   _snackBar(res.transactionId);
 
-                  Future.delayed(Duration(seconds: 3), () {
+                  Future.delayed(const Duration(seconds: 3), () {
                     Navigator.pop(context);
                   });
                 },

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.1
+
+- Expose of `BuildContext` for web view 3ds based callbacks to have access to contextual elements such `Naviagtor`...
+- Fixed the callback repetitions.
+- Minor edits.
+
 ## 0.9.0
 
 - Implmentation of Flutter integration for payments
