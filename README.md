@@ -91,7 +91,7 @@ Which provides an opinionated standalone payment integration for flutter, which 
        cvv: 112,
        expireDate: YouCanPayExpireDate(month: 12, year: 2024),
      ),
-     on3dsVerificationFailed: (res) {
+     on3dsVerificationFailed: (context, res) {
        _snackBar(res.message);
      },
      onPaymentFailed: (exception, stacktrace) {
@@ -100,7 +100,7 @@ Which provides an opinionated standalone payment integration for flutter, which 
      onPaymentSuccessWithout3dsVerification: (res) {
        _snackBar(res.message);
      },
-     onPaymentSuccessWith3dsVerification: (res) {
+     onPaymentSuccessWith3dsVerification: (context, res) {
        _snackBar(res.transactionId);
      },
   );
