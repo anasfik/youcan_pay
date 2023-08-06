@@ -117,7 +117,9 @@ _ `onPaymentSuccessWith3dsVerification` will be called if a payment was processe
 
 <br>
 
-While testing/developing, you may be willing to use [test cards](https://youcanpay.com/docs#testing_and_test_cards), right? you can access/use those card via `YouCanPayCard` factories:
+###### **Notes while testing/developing:**
+
+- You may be willing to use [test cards](https://youcanpay.com/docs#testing_and_test_cards), right?with this package, you can use them directly via `YouCanPayCard` factories:
 
 ```dart
   YouCanPayCard.testingNo3dsSuccessCard();
@@ -128,6 +130,8 @@ While testing/developing, you may be willing to use [test cards](https://youcanp
   
   YouCanPayCard.testingNo3dsNoFundsCard();
 ```
+
+- when you set the sandbox mode for testing, please ensure that you did set a success & error URLs from the Youcan Pay dashboard, so you can mock payment flows in your app.
 
 ### Error handling
 
