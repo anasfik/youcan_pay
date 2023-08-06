@@ -1,4 +1,8 @@
-s# Changelog
+# Changelog
+
+## 1.0.1
+
+- Minor docs update
 
 ## 1.0.0
 
